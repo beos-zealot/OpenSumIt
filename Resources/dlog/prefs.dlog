@@ -1,0 +1,277 @@
+#include "SumItTypes.r"
+
+dlog (0, "Settings") {
+	{0, 0, 300, 230},
+	"Settings",
+	tabsheet {
+		{0, 0, 300, 200},
+		"tabs",
+		sheet {
+			{0, 0, 0, 0},
+			"Fonts",
+			popup {
+				{ 10, 10, 200, 30 },
+				"neworcur",
+				"Default Font for",
+				0
+			},
+			box {
+				{ 30, 45, 220, 85},
+				"Document font",
+				popup {
+					{5, 14, 150, 30},
+					"docfont",
+					"",
+					0
+				},
+				textedit {
+					{ 150, 16, 180, 32},
+					"docsize",
+					"",
+					"",
+					"0123456789",
+					2
+				}
+			},
+			box {
+				{ 30, 95, 220, 135},
+				"Heading font",
+				popup {
+					{5, 14, 150, 30},
+					"borderfont",
+					"",
+					0
+				},
+				textedit {
+					{ 150, 16, 180, 32},
+					"bordersize",
+					"",
+					"",
+					"0123456789",
+					2
+				}
+			}
+		},
+		sheet {
+			{0, 0, 0, 0},
+			"Worksheet",
+			statictext {
+				{ 10, 10, 240, 26 },
+				"",
+				"These options apply to the current document"
+			},
+			checkbox {
+				{ 10, 30, 200, 46},
+				"autorecalc",
+				"Automatic recalculate",
+				1
+			},
+			checkbox {
+				{ 10, 50, 200, 66},
+				"displayzero",
+				"Display zero results",
+				0
+			},
+			checkbox {
+				{ 10, 70, 200, 86 },
+				"dispgrid",
+				"Display grid",
+				1
+			},
+			checkbox {
+				{ 10, 90, 200, 106 },
+				"disphead",
+				"Display Headings",
+				1
+			}
+		},
+		sheet {
+			{0, 0, 0, 0},
+			"Numbers",
+			box {
+				{ 15, 5, 270, 89 },
+				"Separators",
+				textedit {
+					{10, 14, 115, 30},
+					"decsep",
+					"Decimal:",
+					"",
+					"",
+					1 
+				},
+				textedit {
+					{10, 35, 115, 51},
+					"thoussep",
+					"Thousands:",
+					"",
+					"",
+					1 
+				},
+				textedit {
+					{10, 56, 115, 72},
+					"listsep",
+					"List:",
+					"",
+					"",
+					1
+				}
+			},
+			box {
+				{ 15, 94, 270, 174 },
+				"Currency",
+				textedit {
+					{10, 14, 115, 30},
+					"c_symbol",
+					"Symbol:",
+					"$",
+					"",
+					4 
+				},
+				radiobutton {
+					{ 130, 14, 195, 30},
+					"c_before",
+					"Before",
+					1 
+				},
+				radiobutton {
+					{ 200, 14, 245, 30 },
+					"c_after",
+					"After",
+					0 
+				},
+				textedit {
+					{ 10, 36, 115, 52 },
+					"c_digits",
+					"Digits:",
+					"2",
+					"0123456789",
+					1
+				},
+				checkbox {
+					{ 10, 57, 239, 73 },
+					"c_neg_par",
+					"Put negatives in parentheses",
+					0
+				}
+			}
+		},
+		sheet {
+			{ 0, 0, 0, 0 },
+			"Dates",
+			box {
+				{ 15, 10, 270, 69 },
+				"Separators",
+				textedit {
+					{ 10, 14, 115, 30},
+					"timesep",
+					"Time:",
+					"",
+					"",
+					1
+				},
+				textedit {
+					{ 10, 36, 115, 52 },
+					"datesep",
+					"Date:",
+					"",
+					"",
+					1
+				}
+			},
+			popup {
+				{ 15, 75, 150, 91 },
+				"dateorder",
+				"Order:",
+				50 
+			},
+			checkbox {
+				{ 15, 97, 150, 113 },
+				"24 hours",
+				"Use 24 hours",
+				0
+			}
+		},
+		sheet {
+			{0, 0, 0, 0},
+			"Misc",
+			checkbox {
+				{ 10, 10, 240, 26},
+				"excel",
+				"Arrow key enters data/moves cursor",
+				0
+			},
+			checkbox {
+				{ 10, 30, 240, 46},
+				"grayselect",
+				"Lighten active cells indicatior",
+				0
+			},
+			checkbox {
+				{ 10, 50, 240, 66 },
+				"formula starts with equal",
+				"Put '=' in front of formulas",
+				0
+			},
+			checkbox {
+				{ 10, 70, 240, 86 },
+				"dark gridlines",
+				"Darken gridlines",
+				0
+			},
+			box {
+				{10, 95, 200, 152 },
+				"At Startup",
+				radiobutton {
+					{10, 14, 180, 30},
+					"donew",
+					"Open a new worksheet",
+					1
+				},
+				radiobutton {
+					{10, 35, 180, 51},
+					"doopen",
+					"Show a File Browser dialog",
+					0
+				}
+			}
+		},
+		sheet {
+			{ 0, 0, 0, 0 },
+			"Printing",
+			button {
+				{ 10, 10, 130, 30 },
+				"pagesetup",
+				"Default Page Setup",
+				'Page'
+			},
+			box {
+				{ 10, 50, 270, 110 },
+				"Print Options for %s",
+				checkbox {
+					{ 10, 14, 230, 30 },
+					"prgrid",
+					"Print Gridlines",
+					0
+				},
+				checkbox {
+					{ 10, 34, 230, 50 },
+					"prhead",
+					"Print Row and Column Headings",
+					0
+				}
+			}
+		}
+	},
+	button {
+		{239, 204, 297, 224},
+		"ok",
+		"Apply",
+		'OK  '
+	},
+	button {
+		{171, 204, 229, 224},
+		"cancel",
+		"Revert",
+		'Cncl'
+	}
+};

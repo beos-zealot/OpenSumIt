@@ -1,0 +1,27 @@
+#include "SumItTypes.r"
+
+Resource 
+mdlg (6, "Digits") {
+	{0, 0, 140, 65},
+	"Digits",
+	textedit {
+		{20, 10, 120, 26},
+		"digits",
+		"Digits:",
+		"",
+		"0123456789",
+		2
+	},
+	button {
+		{ 75, 35, 130, 55},
+		"ok",
+		"OK",
+		'OK  '
+	},
+	button {
+		{ 10, 35, 65, 55},
+		"cancel",
+		"Cancel",
+		'Cncl'
+	}
+};

@@ -1,0 +1,381 @@
+## Sat May 13 20:07:06 UTC 2000 ##
+
+APP_SRC := \
+  ./Source/main/App/Sum-It.cpp \
+	
+APP_OBJ_ := $(APP_SRC:.cpp=.o)
+APP_OBJS := $(foreach file, $(APP_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+APP_DEP_ := $(APP_SRC:.cpp=_cpp.d)
+APP_DEPS := $(foreach file, $(APP_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(APP_DEPS)
+OBJS      += $(APP_OBJS)
+
+#####################################
+
+CVS_SRC := \
+	
+CVS_OBJ_ := $(CVS_SRC:.cpp=.o)
+CVS_OBJS := $(foreach file, $(CVS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+CVS_DEP_ := $(CVS_SRC:.cpp=_cpp.d)
+CVS_DEPS := $(foreach file, $(CVS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(CVS_DEPS)
+OBJS      += $(CVS_OBJS)
+
+#####################################
+
+CELL_SRC := \
+  ./Source/main/Cell/Cell.cpp \
+  ./Source/main/Cell/CellCommands.cpp \
+  ./Source/main/Cell/CellData.cpp \
+  ./Source/main/Cell/CellIterator.cpp \
+  ./Source/main/Cell/CellParser.cpp \
+  ./Source/main/Cell/CellScrollBar.cpp \
+  ./Source/main/Cell/CellStyle.cpp \
+  ./Source/main/Cell/CellUtils.cpp \
+  ./Source/main/Cell/Container.cpp \
+  ./Source/main/Cell/Container.graph.cpp \
+  ./Source/main/Cell/Container.styles.cpp \
+  ./Source/main/Cell/Range.cpp \
+  ./Source/main/Cell/Value.cpp \
+	
+CELL_OBJ_ := $(CELL_SRC:.cpp=.o)
+CELL_OBJS := $(foreach file, $(CELL_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+CELL_DEP_ := $(CELL_SRC:.cpp=_cpp.d)
+CELL_DEPS := $(foreach file, $(CELL_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(CELL_DEPS)
+OBJS      += $(CELL_OBJS)
+
+#####################################
+
+CELL-UI_SRC := \
+  ./Source/main/Cell-UI/CellView.Find.cpp \
+  ./Source/main/Cell-UI/CellView.IO.cpp \
+  ./Source/main/Cell-UI/CellView.Popups.cpp \
+  ./Source/main/Cell-UI/CellView.SYLK.cpp \
+  ./Source/main/Cell-UI/CellView.ants.cpp \
+  ./Source/main/Cell-UI/CellView.calc.cpp \
+  ./Source/main/Cell-UI/CellView.cells.cpp \
+  ./Source/main/Cell-UI/CellView.commands.cpp \
+  ./Source/main/Cell-UI/CellView.cpp \
+  ./Source/main/Cell-UI/CellView.drag.cpp \
+  ./Source/main/Cell-UI/CellView.draw.cpp \
+  ./Source/main/Cell-UI/CellView.graphs.cpp \
+  ./Source/main/Cell-UI/CellView.keys.cpp \
+  ./Source/main/Cell-UI/CellView.mouse.cpp \
+  ./Source/main/Cell-UI/CellView.print.cpp \
+  ./Source/main/Cell-UI/CellView.resizing.cpp \
+  ./Source/main/Cell-UI/CellView.scroll.cpp \
+  ./Source/main/Cell-UI/CellView.xrefs.cpp \
+  ./Source/main/Cell-UI/CellWindow.IO.cpp \
+  ./Source/main/Cell-UI/CellWindow.commands.cpp \
+  ./Source/main/Cell-UI/CellWindow.cpp \
+  ./Source/main/Cell-UI/CellWindow.dialogs.cpp \
+  ./Source/main/Cell-UI/CellWindow.graph.cpp \
+  ./Source/main/Cell-UI/CellWindow.positioning.cpp \
+	
+CELL-UI_OBJ_ := $(CELL-UI_SRC:.cpp=.o)
+CELL-UI_OBJS := $(foreach file, $(CELL-UI_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+CELL-UI_DEP_ := $(CELL-UI_SRC:.cpp=_cpp.d)
+CELL-UI_DEPS := $(foreach file, $(CELL-UI_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(CELL-UI_DEPS)
+OBJS      += $(CELL-UI_OBJS)
+
+#####################################
+
+COLLECTIONS_SRC := \
+  ./Source/main/Collections/NameTable.cpp \
+  ./Source/main/Collections/Set.cpp \
+  ./Source/main/Collections/Stack.cpp \
+	
+COLLECTIONS_OBJ_ := $(COLLECTIONS_SRC:.cpp=.o)
+COLLECTIONS_OBJS := $(foreach file, $(COLLECTIONS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+COLLECTIONS_DEP_ := $(COLLECTIONS_SRC:.cpp=_cpp.d)
+COLLECTIONS_DEPS := $(foreach file, $(COLLECTIONS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(COLLECTIONS_DEPS)
+OBJS      += $(COLLECTIONS_OBJS)
+
+#####################################
+
+COMMANDS_SRC := \
+  ./Source/main/Commands/Command.cpp \
+  ./Source/main/Commands/CopyCommands.cpp \
+  ./Source/main/Commands/DragCommand.cpp \
+  ./Source/main/Commands/FillCommand.cpp \
+  ./Source/main/Commands/FindCommands.cpp \
+  ./Source/main/Commands/GraphicCommands.cpp \
+  ./Source/main/Commands/InsertCommands.cpp \
+  ./Source/main/Commands/ResizeCommands.cpp \
+  ./Source/main/Commands/SortCommand.cpp \
+  ./Source/main/Commands/StyleCommand.cpp \
+	
+COMMANDS_OBJ_ := $(COMMANDS_SRC:.cpp=.o)
+COMMANDS_OBJS := $(foreach file, $(COMMANDS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+COMMANDS_DEP_ := $(COMMANDS_SRC:.cpp=_cpp.d)
+COMMANDS_DEPS := $(foreach file, $(COMMANDS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(COMMANDS_DEPS)
+OBJS      += $(COMMANDS_OBJS)
+
+#####################################
+
+DIALOG_SRC := \
+  ./Source/main/Dialog/AnimateGraphDialog.cpp \
+  ./Source/main/Dialog/ChooseGraphDialog.cpp \
+  ./Source/main/Dialog/DateFormatDialog.cpp \
+  ./Source/main/Dialog/Dialog.cpp \
+  ./Source/main/Dialog/DigitsDialog.cpp \
+  ./Source/main/Dialog/FillDialog.cpp \
+  ./Source/main/Dialog/FindDialog.cpp \
+  ./Source/main/Dialog/GotoDialog.cpp \
+  ./Source/main/Dialog/GraphOptionsDialog.cpp \
+  ./Source/main/Dialog/NamesDialog.cpp \
+  ./Source/main/Dialog/PasteFunctionDialog.cpp \
+  ./Source/main/Dialog/PasteSpecialDialog.cpp \
+  ./Source/main/Dialog/PrefsDialog.cpp \
+  ./Source/main/Dialog/RDialog.cpp \
+  ./Source/main/Dialog/SortDialog.cpp \
+	
+DIALOG_OBJ_ := $(DIALOG_SRC:.cpp=.o)
+DIALOG_OBJS := $(foreach file, $(DIALOG_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+DIALOG_DEP_ := $(DIALOG_SRC:.cpp=_cpp.d)
+DIALOG_DEPS := $(foreach file, $(DIALOG_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(DIALOG_DEPS)
+OBJS      += $(DIALOG_OBJS)
+
+#####################################
+
+EXCEL_SRC := \
+  ./Source/main/Excel/Excel.OLE2.cpp \
+  ./Source/main/Excel/Excel.cpp \
+  ./Source/main/Excel/Excel.formula.cpp \
+  ./Source/main/Excel/Excel.pass1.cpp \
+  ./Source/main/Excel/Excel.pass2.cpp \
+	
+EXCEL_OBJ_ := $(EXCEL_SRC:.cpp=.o)
+EXCEL_OBJS := $(foreach file, $(EXCEL_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+EXCEL_DEP_ := $(EXCEL_SRC:.cpp=_cpp.d)
+EXCEL_DEPS := $(foreach file, $(EXCEL_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(EXCEL_DEPS)
+OBJS      += $(EXCEL_OBJS)
+
+#####################################
+
+FILESYS_SRC := \
+  ./Source/main/FileSys/FileFormat.cpp \
+  ./Source/main/FileSys/Text2Cells.cpp \
+	
+FILESYS_OBJ_ := $(FILESYS_SRC:.cpp=.o)
+FILESYS_OBJS := $(foreach file, $(FILESYS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+FILESYS_DEP_ := $(FILESYS_SRC:.cpp=_cpp.d)
+FILESYS_DEPS := $(foreach file, $(FILESYS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(FILESYS_DEPS)
+OBJS      += $(FILESYS_OBJS)
+
+#####################################
+
+FORMULA_SRC := \
+  ./Source/main/Formula/CalcLooper.cpp \
+  ./Source/main/Formula/CalcStack.cpp \
+  ./Source/main/Formula/CalculateJob.cpp \
+  ./Source/main/Formula/Formula.IO.cpp \
+  ./Source/main/Formula/Formula.cpp \
+  ./Source/main/Formula/Formula.iter.cpp \
+  ./Source/main/Formula/Formula.refs.cpp \
+  ./Source/main/Formula/lexer.cpp \
+  ./Source/main/Formula/parser.cpp \
+	
+FORMULA_OBJ_ := $(FORMULA_SRC:.cpp=.o)
+FORMULA_OBJS := $(foreach file, $(FORMULA_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+FORMULA_DEP_ := $(FORMULA_SRC:.cpp=_cpp.d)
+FORMULA_DEPS := $(foreach file, $(FORMULA_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(FORMULA_DEPS)
+OBJS      += $(FORMULA_OBJS)
+
+#####################################
+
+FUNCTIONS_SRC := \
+  ./Source/main/Functions/FunctionUtils.cpp \
+  ./Source/main/Functions/Functions.date-time.cpp \
+  ./Source/main/Functions/Functions.finance.cpp \
+  ./Source/main/Functions/Functions.logical.cpp \
+  ./Source/main/Functions/Functions.math.cpp \
+  ./Source/main/Functions/Functions.spreadsheet.cpp \
+  ./Source/main/Functions/Functions.statistics.cpp \
+  ./Source/main/Functions/Functions.text.cpp \
+	
+FUNCTIONS_OBJ_ := $(FUNCTIONS_SRC:.cpp=.o)
+FUNCTIONS_OBJS := $(foreach file, $(FUNCTIONS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+FUNCTIONS_DEP_ := $(FUNCTIONS_SRC:.cpp=_cpp.d)
+FUNCTIONS_DEPS := $(foreach file, $(FUNCTIONS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(FUNCTIONS_DEPS)
+OBJS      += $(FUNCTIONS_OBJS)
+
+#####################################
+
+MISC-CLASSES_SRC := \
+  ./Source/main/Misc-Classes/Benaphore.cpp \
+  ./Source/main/Misc-Classes/MyError.cpp \
+  ./Source/main/Misc-Classes/Preferences.cpp \
+  ./Source/main/Misc-Classes/ResourceManager.cpp \
+  ./Source/main/Misc-Classes/RunArray.cpp \
+  ./Source/main/Misc-Classes/RunArray2.cpp \
+	
+MISC-CLASSES_OBJ_ := $(MISC-CLASSES_SRC:.cpp=.o)
+MISC-CLASSES_OBJS := $(foreach file, $(MISC-CLASSES_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+MISC-CLASSES_DEP_ := $(MISC-CLASSES_SRC:.cpp=_cpp.d)
+MISC-CLASSES_DEPS := $(foreach file, $(MISC-CLASSES_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(MISC-CLASSES_DEPS)
+OBJS      += $(MISC-CLASSES_OBJS)
+
+#####################################
+
+PLUGIN_SRC := \
+  ./Source/main/Plugin/GraphPlugIn.cpp \
+	
+PLUGIN_OBJ_ := $(PLUGIN_SRC:.cpp=.o)
+PLUGIN_OBJS := $(foreach file, $(PLUGIN_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+PLUGIN_DEP_ := $(PLUGIN_SRC:.cpp=_cpp.d)
+PLUGIN_DEPS := $(foreach file, $(PLUGIN_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(PLUGIN_DEPS)
+OBJS      += $(PLUGIN_OBJS)
+
+#####################################
+
+UI-MISC_SRC := \
+  ./Source/main/UI-Misc/About.cpp \
+  ./Source/main/UI-Misc/DocOptions.cpp \
+  ./Source/main/UI-Misc/FontMetrics.cpp \
+  ./Source/main/UI-Misc/FontStyle.cpp \
+  ./Source/main/UI-Misc/Formatter.cpp \
+  ./Source/main/UI-Misc/Formatter.date.cpp \
+  ./Source/main/UI-Misc/Formatter.number.cpp \
+  ./Source/main/UI-Misc/Formatter.template.cpp \
+  ./Source/main/UI-Misc/Graphic.cpp \
+  ./Source/main/UI-Misc/MyClipboard.cpp \
+	
+UI-MISC_OBJ_ := $(UI-MISC_SRC:.cpp=.o)
+UI-MISC_OBJS := $(foreach file, $(UI-MISC_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+UI-MISC_DEP_ := $(UI-MISC_SRC:.cpp=_cpp.d)
+UI-MISC_DEPS := $(foreach file, $(UI-MISC_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(UI-MISC_DEPS)
+OBJS      += $(UI-MISC_OBJS)
+
+#####################################
+
+UTILS_SRC := \
+  ./Source/main/Utils/DrawUtils.cpp \
+  ./Source/main/Utils/MallocWrapper.cpp \
+  ./Source/main/Utils/MyMath.cpp \
+  ./Source/main/Utils/Round.cpp \
+  ./Source/main/Utils/StringTable.cpp \
+  ./Source/main/Utils/StringUtils.cpp \
+  ./Source/main/Utils/Utils.cpp \
+  ./Source/main/Utils/utf-support.cpp \
+	
+UTILS_OBJ_ := $(UTILS_SRC:.cpp=.o)
+UTILS_OBJS := $(foreach file, $(UTILS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+UTILS_DEP_ := $(UTILS_SRC:.cpp=_cpp.d)
+UTILS_DEPS := $(foreach file, $(UTILS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(UTILS_DEPS)
+OBJS      += $(UTILS_OBJS)
+
+#####################################
+
+WIDGETS_SRC := \
+  ./Source/main/Widgets/ColorMenuItem.cpp \
+  ./Source/main/Widgets/MyTextControl.cpp \
+  ./Source/main/Widgets/ProgressView.cpp \
+  ./Source/main/Widgets/SelectionView.cpp \
+  ./Source/main/Widgets/StaticString.cpp \
+  ./Source/main/Widgets/TabSheet.cpp \
+	
+WIDGETS_OBJ_ := $(WIDGETS_SRC:.cpp=.o)
+WIDGETS_OBJS := $(foreach file, $(WIDGETS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+WIDGETS_DEP_ := $(WIDGETS_SRC:.cpp=_cpp.d)
+WIDGETS_DEPS := $(foreach file, $(WIDGETS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(WIDGETS_DEPS)
+OBJS      += $(WIDGETS_OBJS)
+
+#####################################
+
+BSL_SRC := \
+	
+BSL_OBJ_ := $(BSL_SRC:.cpp=.o)
+BSL_OBJS := $(foreach file, $(BSL_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+BSL_DEP_ := $(BSL_SRC:.cpp=_cpp.d)
+BSL_DEPS := $(foreach file, $(BSL_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+
+DEPS      += $(BSL_DEPS)
+OBJS      += $(BSL_OBJS)
+
+#####################################
+
+PATHS += \
+	./Source/main/ \
+	./Source/main/.Obsolete/CVS \
+	./Source/main/App \
+	./Source/main/App/CVS \
+	./Source/main/CVS \
+	./Source/main/Cell \
+	./Source/main/Cell/CVS \
+	./Source/main/Cell-UI \
+	./Source/main/Cell-UI/CVS \
+	./Source/main/Collections \
+	./Source/main/Collections/CVS \
+	./Source/main/Commands \
+	./Source/main/Commands/CVS \
+	./Source/main/Dialog \
+	./Source/main/Dialog/CVS \
+	./Source/main/Excel \
+	./Source/main/Excel/CVS \
+	./Source/main/FileSys \
+	./Source/main/FileSys/CVS \
+	./Source/main/Formula \
+	./Source/main/Formula/CVS \
+	./Source/main/Functions \
+	./Source/main/Functions/CVS \
+	./Source/main/Misc-Classes \
+	./Source/main/Misc-Classes/CVS \
+	./Source/main/Plugin \
+	./Source/main/Plugin/CVS \
+	./Source/main/UI-Misc \
+	./Source/main/UI-Misc/CVS \
+	./Source/main/Utils \
+	./Source/main/Utils/CVS \
+	./Source/main/Widgets \
+	./Source/main/Widgets/CVS \
+	./Source/main/bsl \
+	./Source/main/bsl/CVS \
+

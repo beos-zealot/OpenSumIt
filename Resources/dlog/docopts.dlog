@@ -1,0 +1,78 @@
+#include "SumItTypes.r"
+
+dlog (1, "Document options") {
+	{0, 0, 300, 200},
+	"Options for %s",
+	tabsheet {
+		{0, 0, 300, 170},
+		"tabs",
+		sheet {
+			{0, 0, 0, 0},
+			"Fonts",
+			box {
+				{43, 20, 243, 64},
+				"Document font",
+				popup {
+					{5, 14, 150, 30},
+					"docfont",
+					"",
+					0
+				},
+				textedit {
+					{160, 16, 190, 32},
+					"docsize",
+					"",
+					"",
+					"0123456789",
+					2
+				}
+			},
+			box {
+				{42, 80, 243, 124},
+				"Heading font",
+				popup {
+					{5, 14, 150, 30},
+					"borderfont",
+					"",
+					0
+				},
+				textedit {
+					{160, 16, 190, 32},
+					"bordersize",
+					"",
+					"",
+					"0123456789",
+					2
+				}
+			}
+		},
+		sheet {
+			{0, 0, 0, 0},
+			"Calculation",
+			checkbox {
+				{ 10, 10, 200, 26},
+				"autorecalc",
+				"Automatic recalculate",
+				0
+			},
+			checkbox {
+				{ 10, 30, 200, 46},
+				"displayzero",
+				"Display zero results",
+				0
+			}
+		}
+	},
+	button {
+		{239, 174, 297, 194},
+		"ok",
+		"Save",
+		'OK  '
+	},
+	button {
+		{171, 174, 229, 194},
+		"cancel",
+		"Revert",
+		'Cncl'
+	}
+};

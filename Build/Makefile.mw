@@ -1,0 +1,14 @@
+MWERKS_DIR      := Source/Metrowerks
+MWERKS_SRC      := $(MWERKS_DIR)/MAlert.cpp $(MWERKS_DIR)/MThread.cpp
+MWERKS_LIB      := mw
+MWERKS          := $(LIB_DIR)/lib$(MWERKS_LIB).a
+
+MWERKS_OBJ_     := $(MWERKS_SRC:.cpp=.o)
+MWERKS_OBJS     := $(foreach file, $(MWERKS_OBJ_), $(addprefix $(OBJ_DIR)/, $(notdir $(file))))
+
+MWERKS_DEP_     := $(MWERKS_SRC:.cpp=_cpp.d)
+MWERKS_DEPS     := $(foreach file, $(MWERKS_DEP_), $(addprefix $(DEP_DIR)/, $(notdir $(file))))
+DEPS            += $(MWERKS_DEPS)
+
+$(MWERKS): $(MWERKS_OBJS)
+	$(BUILD_STATIC)

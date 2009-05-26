@@ -1,0 +1,17 @@
+menu_InsertRow = Insert Row
+menu_InsertCol = Insert Column
+menu_DeleteRow = Delete Row
+menu_DeleteCol = Delete Column
+dlg_Key = Key %s
+dlg_Col = Column
+dlg_Row = Row
+dlg_SortRange = Sort Range: %s
+dlg_Asc = Ascending
+dlg_Des = Descending
+dlg_SortRows = Sort Rows
+dlg_SortCols = Sort Columns
+dlg_NoKey = NoKey
+dlg_First = First Value:
+dlg_Next = Next Value:
+dlg_Last = Last Value:
+str_Untitled = Untitled-%d
