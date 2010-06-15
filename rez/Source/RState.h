@@ -37,9 +37,13 @@
 #ifndef RSTATE_H
 #define RSTATE_H
 
-#include <map.h>
+#include <map>
+#include <List.h>
 #include "RElem.h"
 #include "SymbolTable.h"
+
+using namespace std;
+
 
 enum {
 	tString, tInt, tIdent, tCase, tArray, tArrayEnd, tRaw
