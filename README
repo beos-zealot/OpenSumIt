@@ -1,7 +1,12 @@
 
-I am allready have compilable sources of Sum-It, just commiting changes step by step, so be patient :)
+I am allready succeeded to compile Sum-It, just commiting changes step by step, so be patient :)
 
-plan is to update sources to compilable state under Haiku gcc4, that everybody could start testing, fixing, expanding and so on...
+All work has been done on HAIKU gcc4 dev. environment only, so i am not aware if my changes will break or allready broke compiling on HAIKU gcc2 or BeOS/Zeta.
+
+Plan is to fix errors compiling with gcc4 and to open possibility, that everybody interested could start testing, fixing, developing, expanding and so on... 
+
+Sum-It build system needs special tools: bsl and rez. Some people were frustrated by trying to compile Sum-It, because these tools were missing on this repository. It's good that they still were in old place, so now they have been imported to new home.
+
 
 2010.06.15
 beos_zealot
