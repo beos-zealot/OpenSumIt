@@ -1040,7 +1040,7 @@ char *yytext;
 #include <ctype.h>
 #include <time.h>
 
-//#define YY_SKIP_YYWRAP
+#define YY_SKIP_YYWRAP
 #define yywrap()	1
 
 static char sBuf[1024], *sbp, *d;
