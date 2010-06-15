@@ -38,6 +38,8 @@
 #include "rez.h"
 #include "RState.h"
 #include <cstdio>
+#include <cstring>
+#include <cstdlib>
 
 RElem::RElem(REval *v, int size, int offset, RState *state)
 {
