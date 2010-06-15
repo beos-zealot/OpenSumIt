@@ -38,6 +38,7 @@
 #include "REval.h"
 #include "SymbolTable.h"
 #include <typeinfo>
+#include <string.h>
 #include <support/Debug.h>
 #include <ByteOrder.h>
 #include <List.h>
@@ -175,7 +176,7 @@ RState* RSStringValue::Shift(int v, int token, RElem** head)
 		else
 			l = strlen(s);
 		
-		p = (char *)calloc(max((int)l, fSize) + 2, 1);
+		p = (char *)calloc(std::max((int)l, fSize) + 2, 1);
 		if (!p) rez_error("Insufficient memory");
 		
 		switch (fKind)
