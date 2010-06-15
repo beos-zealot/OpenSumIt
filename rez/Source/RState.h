@@ -42,8 +42,6 @@
 #include "RElem.h"
 #include "SymbolTable.h"
 
-using namespace std;
-
 
 enum {
 	tString, tInt, tIdent, tCase, tArray, tArrayEnd, tRaw
@@ -52,7 +50,7 @@ enum {
 class RState;
 struct RElem;
 
-typedef map<int, int> intmap;
+typedef std::map<int, int> intmap;
 
 extern intmap gValueMap;
 

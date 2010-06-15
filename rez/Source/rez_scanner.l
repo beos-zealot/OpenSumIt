@@ -44,6 +44,7 @@
 #include <ctype.h>
 #include <time.h>
 
+
 #define yywrap()	1
 
 static char sBuf[1024], *sbp, *d;
@@ -58,7 +59,7 @@ int include_stack_ptr = 0;
 YY_BUFFER_STATE macro_stack[MAX_MACRO_DEPTH];
 int macro_stack_ptr = 0;
 
-typedef map<int, char*> macromap ;
+typedef std::map<int, char*> macromap ;
 macromap gMacroTable = *new macromap;
 
 void AddMacro(char *s);
