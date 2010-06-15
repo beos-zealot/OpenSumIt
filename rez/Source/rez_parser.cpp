@@ -119,6 +119,8 @@
 #include "REval.h"
 
 #include <cstdio>
+#include <cstring>
+#include <stdlib.h>
 #include <List.h>
 #include <ByteOrder.h>
 
