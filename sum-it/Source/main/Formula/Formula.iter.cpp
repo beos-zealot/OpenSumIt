@@ -71,6 +71,7 @@
 #endif
 
 #include <support/Debug.h>
+#include <cstring>
 
 CFormulaIterator::CFormulaIterator(void *inFormula, cell inLocation)
 {
