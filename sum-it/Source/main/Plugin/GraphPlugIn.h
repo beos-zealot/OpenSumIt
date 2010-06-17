@@ -46,6 +46,7 @@
 #endif
 
 #include <Font.h>
+#include <DataIO.h>
 
 class CGraphView;
 class CGraphOptionsDialog;
