@@ -541,7 +541,7 @@ BRect CCellWindow::GetFrameRect()
 	r.top = frame.top + 27;
 	
 	long	numWindows = sWindowList.CountItems();
-	long t = (long)min(frame.Width() - 14, frame.Height() - 27) / 60;
+	long t = (long)std::min(frame.Width() - 14, frame.Height() - 27) / 60;
 	float offset = (numWindows % t) * 15;
 
 	r.OffsetBy(offset, offset);
