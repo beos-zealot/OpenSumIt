@@ -73,6 +73,7 @@
 
 #include <Window.h>
 #include <Beep.h>
+#include <cstring>
 
 void CCellView::StartCalculation(int inCount)
 {
