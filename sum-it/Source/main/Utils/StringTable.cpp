@@ -50,6 +50,7 @@
 #include "ResourceManager.h"
 #endif
 
+#include <cstring>
 
 const char* GetIdxString(const char* Buf,long size,long idx);
 
