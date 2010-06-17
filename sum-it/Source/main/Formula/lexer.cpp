@@ -742,7 +742,7 @@ int CParser::GetNextToken(bool acceptTime)
 			mCell = c;
 			token = CELL;
 		}
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 		else if (strcasecmp(t, gTrueString) == 0)
 #else
 		else if (::relstring(t, gTrueString, false, false) == 0)
@@ -751,7 +751,7 @@ int CParser::GetNextToken(bool acceptTime)
 			mBool = true;
 			token = BOOL;
 		}
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 		else if (strcasecmp(t, gFalseString) == 0)
 #else
 		else if (::relstring(t, gFalseString, false, false) == 0)
