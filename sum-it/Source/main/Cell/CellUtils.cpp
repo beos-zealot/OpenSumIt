@@ -133,7 +133,7 @@ void OffsetCell(cell& ioCell, cell inOffset, SplitType what, int split, int shif
 		}
 	}
 	else if (ioCell.h > 0)
-		ioCell.h = max(ioCell.h + inOffset.h, 0);
+		ioCell.h = std::max(ioCell.h + inOffset.h, 0);
 	
 	if (what == vSplit)
 	{
@@ -158,7 +158,7 @@ void OffsetCell(cell& ioCell, cell inOffset, SplitType what, int split, int shif
 		}
 	}
 	else if (ioCell.v > 0)
-		ioCell.v = max(ioCell.v + inOffset.v, 0);
+		ioCell.v = std::max(ioCell.v + inOffset.v, 0);
 
 	if (abs(ioCell.v) > kRowCount || abs(ioCell.h) > kColCount)
 		ioCell.h = ioCell.v = 0;
