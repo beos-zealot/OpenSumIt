@@ -83,6 +83,7 @@
 #endif
 
 #include <ctype.h>
+#include <cstring>
 #include <Autolock.h>
 
 void CCellView::Step(StepDirection step)
