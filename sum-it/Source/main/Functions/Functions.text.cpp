@@ -42,8 +42,9 @@
 #include "FunctionUtils.h"
 #include "Functions.h"
 #include "Formatter.h"
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 #include "utf-support.h"
+#include <cstring>
 #else
 #	define mstrlen strlen
 #	define mstrcpy strncpy
