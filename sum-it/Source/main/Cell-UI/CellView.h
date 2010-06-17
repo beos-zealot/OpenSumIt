@@ -62,6 +62,8 @@
 #include <View.h>
 #include <Region.h>
 #include <List.h>
+#include <DataIO.h>
+#include <PrintJob.h>
 
 #include <cstdio>
 
