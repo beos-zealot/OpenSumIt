@@ -115,7 +115,7 @@ CReplaceAllCommand::~CReplaceAllCommand()
 	if (fWhat) FREE(fWhat);
 	if (fWith) FREE(fWith);
 
-	map<cell,char*>::iterator i;
+	std::map<cell,char*>::iterator i;
 	
 	for (i = fSavedFormulas.begin(); i != fSavedFormulas.end(); i++)
 		FREE((*i).second);
@@ -158,7 +158,7 @@ void	CReplaceAllCommand::DoCommand()
 
 void	CReplaceAllCommand::UndoCommand()
 {
-	map<cell,char*>::iterator i;
+	std::map<cell,char*>::iterator i;
 	
 	for (i = fSavedFormulas.begin(); i != fSavedFormulas.end(); i++)
 	{
