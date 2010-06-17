@@ -294,8 +294,8 @@ void CClipboardView::FrameResized(float w, float h)
 	{
 		float vh, vv;
 		
-		vv = max(fRect.Height() - h + B_H_SCROLL_BAR_HEIGHT, 0.0);
-		vh = max(fRect.Width() - w + B_V_SCROLL_BAR_WIDTH, 0.0);
+		vv = static_cast<float>(std::max(static_cast<int>(fRect.Height() - h + B_H_SCROLL_BAR_HEIGHT), 0));
+		vh = static_cast<float>(std::max(static_cast<int>(fRect.Width() - w + B_V_SCROLL_BAR_WIDTH), 0));
 		
 		fScroller->ScrollBar(B_VERTICAL)->SetRange(0, vv);
 		fScroller->ScrollBar(B_HORIZONTAL)->SetRange(0, vh);
