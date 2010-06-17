@@ -130,10 +130,10 @@ void CCellWindow::GetMaxWindowRect(BRect *outRect, range *inRect)
 	
 	if (inRect)
 	{
-		outRect->left = max(outRect->left,     static_cast<float>(inRect->left) );
-		outRect->top = max(outRect->top,       static_cast<float>(inRect->top) );
-		outRect->right = min(outRect->right,   static_cast<float>(inRect->right) );
-		outRect->bottom = min(outRect->bottom, static_cast<float>(inRect->bottom) );
+		outRect->left = std::max(outRect->left,     static_cast<float>(inRect->left) );
+		outRect->top = std::max(outRect->top,       static_cast<float>(inRect->top) );
+		outRect->right = std::min(outRect->right,   static_cast<float>(inRect->right) );
+		outRect->bottom = std::min(outRect->bottom, static_cast<float>(inRect->bottom) );
 		
 		if (!outRect->IsValid())
 			GetMaxWindowRect(outRect, NULL);
