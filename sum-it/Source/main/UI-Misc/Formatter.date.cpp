@@ -190,7 +190,7 @@ float CFormatter::FormatDate(const time_t t, char *s,
 	float w = fm.StringWidth(s);
 	if (w > inWidth)
 	{
-		int c = max(static_cast<int>(inWidth / fm['#']) , (int)0 ) ;
+		int c = std::max(static_cast<int>(inWidth / fm['#']) , (int)0 ) ;
 		
 		s[c] = 0;
 
