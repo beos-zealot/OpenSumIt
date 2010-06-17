@@ -213,7 +213,7 @@ void CCellView::PrintPage(BPrintJob& prJob, int pageNr)
 		fPosition.h = Next(fHPageBreaks, fPosition.h);
 	fPosition.h++; 
 
-	hCells = min(Next(fHPageBreaks, fPosition.h), (int)bounds.right) - fPosition.h;
+	hCells = std::min(Next(fHPageBreaks, fPosition.h), (int)bounds.right) - fPosition.h;
 
 	p = vPageIndx;
 	fPosition.v = 0;
@@ -221,7 +221,7 @@ void CCellView::PrintPage(BPrintJob& prJob, int pageNr)
 		fPosition.v = Next(fVPageBreaks, fPosition.v);
 	fPosition.v++;
 		
-	vCells = min(Next(fVPageBreaks, fPosition.v), (int)bounds.bottom) - fPosition.v;
+	vCells = std::min(Next(fVPageBreaks, fPosition.v), (int)bounds.bottom) - fPosition.v;
 
 	paper.Set(0, 0, fCellWidths[fPosition.h + hCells] - fCellWidths[fPosition.h - 1],
 		fCellHeights[fPosition.v + vCells] - fCellHeights[fPosition.v - 1]);

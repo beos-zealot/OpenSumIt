@@ -178,9 +178,9 @@ class CExcel5Filter
 	bool f1904;
 	int fNewFunctionNr;
 	BMallocIO fBook;
-	vector<xlName> fNames;
-	vector<int> fFonts, fStyles, fFormats;
-	vector<XLSHFormula> fSharedFormulas;
+	std::vector<xlName> fNames;
+	std::vector<int> fFonts, fStyles, fFormats;
+	std::vector<XLSHFormula> fSharedFormulas;
 	
 	CCellView *fCellView;
 	CContainer *fContainer;

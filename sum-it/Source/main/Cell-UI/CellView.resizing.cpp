@@ -116,9 +116,9 @@ void CCellView::ResizeRow(BPoint where, int rowNr)
 			dy = newP.y - lastP.y;
 
 			if (lastP.y + dy < bounds.top + fBorderHeight)
-				dy = min(lastP.y - bounds.top - fBorderHeight, (float)0);
+				dy = std::min(lastP.y - bounds.top - fBorderHeight, (float)0);
 			if (lastP.y + dy > bounds.bottom)
-				dy = max(bounds.bottom - lastP.y, (float)0);
+				dy = std::max(bounds.bottom - lastP.y, (float)0);
 			
 			if (multi && y + dy < minY)
 				dy = minY - y;
@@ -158,7 +158,7 @@ void CCellView::ResizeRow(BPoint where, int rowNr)
 
 				float kh = y + dy - fBorderHeight;
 				kh -= backup[k - 1];
-				fCellHeights.SetValue(k, max(kh, (float)0));
+				fCellHeights.SetValue(k, std::max(kh, (float)0));
 
 				mRow = k;
 				k = t;
@@ -315,9 +315,9 @@ void CCellView::ResizeCol(BPoint where, int colNr)
 			dx = newP.x - lastP.x;
 			
 			if (lastP.x + dx < bounds.left + fBorderWidth)
-				dx = min(lastP.x - bounds.left - fBorderWidth, (float)0);
+				dx = std::min(lastP.x - bounds.left - fBorderWidth, (float)0);
 			if (lastP.x + dx > bounds.right)
-				dx = max(bounds.right - lastP.x, (float)0);
+				dx = std::max(bounds.right - lastP.x, (float)0);
 			
 			if (multi && x + dx < minX)
 				dx = minX - x;
@@ -357,7 +357,7 @@ void CCellView::ResizeCol(BPoint where, int colNr)
 
 				float kw = x + dx - fBorderWidth;
 				kw -= backup[k - 1];
-				fCellWidths.SetValue(k, max(kw, (float)0));
+				fCellWidths.SetValue(k, std::max(kw, (float)0));
 
 				mCol = k;
 				k = t;

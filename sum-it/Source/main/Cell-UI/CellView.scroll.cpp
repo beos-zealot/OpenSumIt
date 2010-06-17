@@ -260,14 +260,14 @@ void CCellView::AdjustScrollBars()
 		fHScrollBar->SetRange(fFrozen.h + 1, c.h + 1);
 		fHScrollBar->SetValue(fPosition.h);
 		fHScrollBar->SetSteps(1,
-			max(-GetCellSpan(B_HORIZONTAL, false), GetCellSpan(B_HORIZONTAL, true)));
+			std::max(-GetCellSpan(B_HORIZONTAL, false), GetCellSpan(B_HORIZONTAL, true)));
 	}
 	if (fVScrollBar)
 	{
 		fVScrollBar->SetRange(fFrozen.v + 1, c.v + 1);
 		fVScrollBar->SetValue(fPosition.v);
 		fVScrollBar->SetSteps(1,
-			max(-GetCellSpan(B_VERTICAL, false), GetCellSpan(B_HORIZONTAL, false)));
+			std::max(-GetCellSpan(B_VERTICAL, false), GetCellSpan(B_HORIZONTAL, false)));
 	}
 } /* CCellView::AdjustScrollBars */
 
