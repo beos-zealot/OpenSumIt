@@ -564,7 +564,7 @@ void CCellView::Read(BPositionIO& stream)
 				{
 					char buf[50];
 					scName *name = (scName *)buf;
-					int l = min((int)chunk.size, 50);
+					int l = std::min((int)chunk.size, 50);
 					
 					stream.Read(name, l);
 
@@ -716,8 +716,8 @@ void CCellView::Read(BPositionIO& stream)
 				{
 					char s[256];
 					Value val;
-					stream.Read(s, min((int)chunk.size, 255));
-					s[min((int)chunk.size, 255)] = 0;
+					stream.Read(s, std::min((int)chunk.size, 255));
+					s[std::min((int)chunk.size, 255)] = 0;
 					val = s;
 					
 					fContainer->SetValue(cl.loc, val);
