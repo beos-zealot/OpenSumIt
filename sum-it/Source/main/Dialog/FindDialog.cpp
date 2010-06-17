@@ -86,6 +86,7 @@
 
 #include <TextControl.h>
 #include <Message.h>
+#include <cstring>
 
 CFindDialog::CFindDialog(BRect frame, const char *name, CCellWindow *owner,
 		window_type type, int flags)
