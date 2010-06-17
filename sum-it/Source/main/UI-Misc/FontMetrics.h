@@ -49,7 +49,7 @@
 
 #include <Locker.h>
 #include <Font.h>
-
+#include <View.h>
 
 class CFontSizeTable;
 class CFontStyle;

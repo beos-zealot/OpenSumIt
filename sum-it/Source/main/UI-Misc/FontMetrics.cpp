@@ -63,7 +63,6 @@
 
 #include <support/Debug.h>
 
-#include <View.h>
 #include <Autolock.h>
 
 CFontSizeTable gFontSizeTable;
