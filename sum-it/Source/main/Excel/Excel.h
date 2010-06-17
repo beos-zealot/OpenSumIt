@@ -85,7 +85,7 @@ class CExcel5Filter
   private:
 	
 	status_t GetBookStream(BPositionIO& stream) throw();
-	bool CExcel5Filter::LocateBof(BPositionIO& stream);
+	bool LocateBof(BPositionIO& stream);
 	
 	class CExcelStream
 	{
