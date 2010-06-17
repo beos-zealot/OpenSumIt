@@ -67,7 +67,7 @@ public:
 
 private:
 	char				*fWhat, *fWith;
-	map<cell,char*>	fSavedFormulas;
+	std::map<cell,char*>	fSavedFormulas;
 };
 
 #endif
