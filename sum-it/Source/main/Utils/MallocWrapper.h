@@ -42,4 +42,6 @@ void *Realloc(void *oldPtr, size_t size, const char *caller, int lineNr);
 char *Strdup(const char *s, const char *caller, int lineNr);
 void Free(void *ptr);
 void PrintUndisposed();
+#if TRACKMEM
 void CheckFailed(mcheck_status status);
+#endif

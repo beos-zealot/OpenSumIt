@@ -60,6 +60,7 @@ typedef struct MyPtr {
 
 static MyPtr gFirst = { NULL, 0, "first", 0 }, gLastDisposed;
 
+#if TRACKMEM
 void CheckFailed(mcheck_status status)
 {
 	PrintUndisposed();
@@ -70,6 +71,7 @@ void CheckFailed(mcheck_status status)
 		p + sizeof(MyPtr), (int)p->size, p->creator, (int)p->lineNr);
 
 } /* CheckFailed */
+#endif
 
 static void Append(MyPtr *ptr)
 {
