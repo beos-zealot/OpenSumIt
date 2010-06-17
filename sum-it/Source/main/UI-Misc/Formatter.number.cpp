@@ -371,8 +371,8 @@ float CFormatter::FormatDouble(double inValue, char *outStr,
 			x = CrunchDouble(inValue, &exp10);
 			num2dec(x, exp10, dec);
 			
-			vk = max(1, exp10);
-			ak = max(0, kMaxDigits - vk);
+			vk = std::max(1, exp10);
+			ak = std::max(0, kMaxDigits - vk);
 			
 			sWid = (sgn ? fm['-'] : 0.0);
 			sWid += vk * digitWidth;
@@ -380,7 +380,7 @@ float CFormatter::FormatDouble(double inValue, char *outStr,
 			if (fCommas)
 				sWid += ((vk - 1) / 3) * fm[gThousandSeparator];
 				
-			ak = min((int)((inWidth - sWid) / digitWidth), ak);
+			ak = std::min((int)((inWidth - sWid) / digitWidth), ak);
 			
 			if (sWid <= inWidth)
 			{
@@ -456,7 +456,7 @@ float CFormatter::FormatDouble(double inValue, char *outStr,
 				n = 4;
 			}
 			
-			digits = min((int)((inWidth - sWid) / digitWidth), kMaxDigits);
+			digits = std::min((int)((inWidth - sWid) / digitWidth), kMaxDigits);
 			digits = round_decimal(dec, exp10, digits);
 
 			p = outStr;
