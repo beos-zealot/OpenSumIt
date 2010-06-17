@@ -32,8 +32,6 @@
 
 #include "Huffman.h"
 
-#include <cstring>
-
 #ifndef CALLOC
 #define CALLOC calloc
 #endif
@@ -48,6 +46,7 @@
 
 #include <ByteOrder.h>
 #include <cstdlib>
+#include <cstring>
 
 #define kVersion htonl('Hfmn')	// ???????
 
