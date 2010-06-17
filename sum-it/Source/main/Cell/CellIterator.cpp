@@ -188,7 +188,7 @@ bool CInterface::GetText(char *s, int maxLen)
 	{
 		if (fIterator->fCellData[fCurrent].mType == eTextData)
 		{
-			maxLen = min((ulong)maxLen - 1, strlen(fIterator->fCellData[fCurrent].mText));
+			maxLen = std::min((ulong)maxLen - 1, strlen(fIterator->fCellData[fCurrent].mText));
 			strncpy(s, fIterator->fCellData[fCurrent].mText, maxLen);
 			s[maxLen] = 0;
 			result = true;
