@@ -41,6 +41,7 @@
 #include "CellView.h"
 #include "NameTable.h"
 #include "StLocker.h"
+#include <cstring>
 
 CName::CName()
 {
