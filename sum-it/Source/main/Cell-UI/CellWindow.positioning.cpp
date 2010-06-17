@@ -48,7 +48,7 @@
 #endif
 
 #include <Screen.h>
-#include <algo.h>
+#include <algorithm>
 
 static void GetDesktop(BRect &outRect)
 {
