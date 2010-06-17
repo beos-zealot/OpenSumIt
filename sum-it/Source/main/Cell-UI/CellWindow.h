@@ -47,6 +47,8 @@
 #include <StorageDefs.h>
 #include <Window.h>
 #include <FilePanel.h>
+#include <Roster.h>
+#include <Menu.h>
 
 class CEditBox;
 class CCommand;
