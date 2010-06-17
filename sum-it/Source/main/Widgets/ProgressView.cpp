@@ -323,7 +323,7 @@ void StProgress::DoStep()
 void StProgress::NewMax(int inMax)
 {
 	fMax = fProgress->fMax = inMax;
-	fCurrent = fProgress->fCurrent = min( static_cast<int32>(inMax), fCurrent);
+	fCurrent = fProgress->fCurrent = std::min( static_cast<int32>(inMax), fCurrent);
 	if (fProgress->fVisible)
 		fProgress->DrawBar();
 } /* StProgress::NewMax */

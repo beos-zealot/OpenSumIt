@@ -1,4 +1,4 @@
-CPICKER_DIR      := Source/Metrowerks
+CPICKER_DIR      := Source/ColorPicker
 CPICKER_SRC      := $(CPICKER_DIR)/ColorPicker.cpp \
                     $(CPICKER_DIR)/ColorSlider.cpp \
                     $(CPICKER_DIR)/ONView.cpp \

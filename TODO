@@ -1,5 +1,11 @@
 
+Try to build Sum-It with gcc2.
+
+
 compare source code of sum-it rez tool vs pe-editor rez tool, the later is newer but lacks some command line options which uses sum-it build system... maybe there were some fixes/optimizations or else, that can be reused  
 
 
-if i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declatation manually till i figure out what's wrong...   
+if i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declatation manually till i figure out what's wrong...
+
+
+Get rid of some old code leftovers for other platforms.  
