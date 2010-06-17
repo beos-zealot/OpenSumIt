@@ -100,7 +100,7 @@ CDragCommand::~CDragCommand()
 {
 	if (fSavedFormulas)
 	{
-		map<cell,void*>::iterator i;
+		std::map<cell,void*>::iterator i;
 		
 		for (i = fSavedFormulas->begin(); i != fSavedFormulas->end(); i++)
 			free((*i).second);
@@ -146,7 +146,7 @@ void CDragCommand::DoCommand()
 	
 	if (fAction == dragMove)
 	{
-		fSavedFormulas = new map<cell,void*>;
+		fSavedFormulas = new std::map<cell,void*>;
 		CCellIterator next(fSrcContainer);
 		cell c;
 		
@@ -235,7 +235,7 @@ void CDragCommand::UndoCommand()
 
 	if (fSavedFormulas)
 	{
-		map<cell,void*>::iterator i;
+		std::map<cell,void*>::iterator i;
 		for (i = fSavedFormulas->begin(); i != fSavedFormulas->end(); i++)
 			fSrcContainer->SetCellFormula((*i).first, (*i).second);
 		delete fSavedFormulas;
