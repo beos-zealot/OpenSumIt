@@ -905,7 +905,7 @@ void CCellView::DrawCellInRect(cell c, BRect r)
 			SetLowColor(kWhite);
 
 		BRegion clip;
-		clipR.left = max(clipR.left, fCellBounds.left + 1);
+		clipR.left = std::max(clipR.left, fCellBounds.left + 1);
 		clip.Include(clipR);
 		StClipCells clipit(this, &clip);
 

@@ -64,6 +64,6 @@ private:
 	CContainer		*fSrcContainer, *fDstContainer, *fSrcSavedCells, *fDstSavedCells;
 	range			fSrcRange, fDstRange, fSavedSelection;
 	int				fAction;
-	map<cell,void*>	*fSavedFormulas;
+	std::map<cell,void*>	*fSavedFormulas;
 	namemap			*fSavedNames;
 };
