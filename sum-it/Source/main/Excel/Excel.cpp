@@ -77,11 +77,11 @@ CExcel5Filter::CExcel5Filter(BPositionIO& inStream, CCellView *cellView, CContai
 
 CExcel5Filter::~CExcel5Filter()
 {
-	vector<XLSHFormula>::iterator fi;
+	std::vector<XLSHFormula>::iterator fi;
 	for (fi = fSharedFormulas.begin(); fi != fSharedFormulas.end(); fi++)
 		free((*fi).p);
 	
-	vector<xlName>::iterator ni;
+	std::vector<xlName>::iterator ni;
 	for (ni = fNames.begin(); ni != fNames.end(); ni++)
 	{
 		if ((*ni).type == xnNamedReference)
