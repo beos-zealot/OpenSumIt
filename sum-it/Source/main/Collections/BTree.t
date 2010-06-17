@@ -322,7 +322,7 @@ void CPage<K,D>::Destroy()
 			delete e[i].p;
 			e[i].p = NULL;
 		}
-		e[i].~CNode();
+		e[i].~CNode<K,D>();
 	}
 } /* void CPage<K,D>::Destroy */
 
