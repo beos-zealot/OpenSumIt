@@ -53,6 +53,7 @@
 #include <SupportDefs.h>
 #include <DataIO.h>
 #include <ByteOrder.h>
+#include <cstring>
 
 class CSwapStream
 {
