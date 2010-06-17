@@ -46,6 +46,7 @@
 #endif
 
 #include <vector>
+#include <cstring>
 
 #include <Locker.h>
 #include <Font.h>
