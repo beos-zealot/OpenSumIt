@@ -165,7 +165,7 @@ ulong CFontSizeTable::GetFontID(const char *fontName, const char *fontStyle,
 		float fontSize, rgb_color fontColor)
 {
 	StLocker<CFontSizeTable> lock(this);
-	vector<CFontMetrics>::iterator i;
+	std::vector<CFontMetrics>::iterator i;
 	CFontMetrics ns(fontName, fontStyle, fontSize, fontColor);
 	
 	for (i = fFonts.begin(); i != fFonts.end(); i++)
