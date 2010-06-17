@@ -126,7 +126,7 @@ public:
 		{ return fFormats.size() + eFirstNewFormat; };
 
 private:
-	map<int,CFormatter> fFormats;
+	std::map<int,CFormatter> fFormats;
 };
 
 void InitFormatter(void);
