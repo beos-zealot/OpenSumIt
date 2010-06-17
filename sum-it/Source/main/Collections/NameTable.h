@@ -62,7 +62,7 @@ class CName
 	char fName[32];
 };
 
-typedef map<CName,range> namemap;
+typedef std::map<CName,range> namemap;
 
 class CNameTable : public namemap
 {
