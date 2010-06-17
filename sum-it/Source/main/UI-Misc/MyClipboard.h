@@ -49,6 +49,7 @@
 #include <Window.h>
 
 class CContainer;
+class CClipboardView;
 
 class CClipboard : public BWindow {
 	friend class CClipboardView;
