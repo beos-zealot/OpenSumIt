@@ -44,6 +44,8 @@
 #include "Formatter.h"
 #include "Globals.h"
 
+#include <cstring>
+
 void DATEFunction(Value *stack, int argCnt, CContainer *cells)
 {
 	double day, month, year;
