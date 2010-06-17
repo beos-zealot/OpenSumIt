@@ -48,6 +48,14 @@
 
 #include <SupportDefs.h>
 #include <Window.h>
+#include <Box.h>
+#include <CheckBox.h>
+#include <RadioButton.h>
+#include <TextControl.h>
+#include <StringView.h>
+#include <Menu.h>
+#include <MenuField.h>
+#include <ListView.h>
 
 const ulong
 	msg_OK				= 'OK  ',
