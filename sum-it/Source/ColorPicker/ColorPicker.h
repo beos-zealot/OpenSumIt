@@ -39,7 +39,7 @@
 #define COLORPICKER_H
 
 #include <InterfaceKit.h>
-#include <algo.h>
+#include <algorithm>
 
 const rgb_color
 	kGray = { 0xd8, 0xd8, 0xd8, 0},
