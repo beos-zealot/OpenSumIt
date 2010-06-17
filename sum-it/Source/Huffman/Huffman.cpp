@@ -32,6 +32,8 @@
 
 #include "Huffman.h"
 
+#include <cstring>
+
 #ifndef CALLOC
 #define CALLOC calloc
 #endif
