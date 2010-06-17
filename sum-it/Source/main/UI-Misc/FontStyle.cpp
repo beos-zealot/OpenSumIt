@@ -58,11 +58,11 @@
 
 
 #include <cstring>
-#include <algo.h>
+#include <algorithm>
 
 #include <Debug.h>
 #include <Autolock.h>
-#include <List.h>
+
 
 const char kDefChars[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	"~!@#$%^&*()_+=-[]{}\\|;:<>'\"";

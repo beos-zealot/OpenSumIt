@@ -46,6 +46,7 @@
 
 #include <Font.h>
 #include <Locker.h>
+#include <List.h>
 
 struct EscapementEntry {
 	int unicode;
