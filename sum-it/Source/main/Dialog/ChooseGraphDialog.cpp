@@ -108,6 +108,8 @@
 #include <File.h>
 #include <Path.h>
 
+#include <cstring>
+
 
 static bool gSelectedMapInited = false;
 static uchar gSelectedMap[256];
