@@ -51,6 +51,7 @@
 #endif
 
 #include <Application.h>
+#include <FilePanel.h>
 
 class CCellWindow;
 
