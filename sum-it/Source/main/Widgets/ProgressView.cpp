@@ -59,7 +59,7 @@
 #include "messages.h"
 #endif
 
-#include <algo.h>
+#include <algorithm>
 
 #include <Message.h>
 #include <Window.h>
