@@ -361,31 +361,31 @@ void CCellView::Step(StepDirection step)
 			
 			if (anchor.v == -1 && anchor.h == -1)
 			{
-				fSelection.left = min(fSelection.left, fCurCell.h);
-				fSelection.right = max(fSelection.right, fCurCell.h);
-				fSelection.top = min(fSelection.top, fCurCell.v);
-				fSelection.bottom = max(fSelection.bottom, fCurCell.v);
+				fSelection.left = std::min(fSelection.left, fCurCell.h);
+				fSelection.right = std::max(fSelection.right, fCurCell.h);
+				fSelection.top = std::min(fSelection.top, fCurCell.v);
+				fSelection.bottom = std::max(fSelection.bottom, fCurCell.v);
 			}
 			else if (anchor.v != -1 && anchor.h != -1)
 			{
-				fSelection.top = min(fCurCell.v, anchor.v);
-				fSelection.bottom = max(fCurCell.v, anchor.v);
-				fSelection.left = min(fCurCell.h, anchor.h);
-				fSelection.right = max(fCurCell.h, anchor.h);
+				fSelection.top = std::min(fCurCell.v, anchor.v);
+				fSelection.bottom = std::max(fCurCell.v, anchor.v);
+				fSelection.left = std::min(fCurCell.h, anchor.h);
+				fSelection.right = std::max(fCurCell.h, anchor.h);
 			}
 			else if (anchor.v == -1)
 			{
-				fSelection.left = min(fCurCell.h, anchor.h);
-				fSelection.right = max(fCurCell.h, anchor.h);
-				fSelection.top = min(fSelection.top, fCurCell.v);
-				fSelection.bottom = max(fSelection.bottom, fCurCell.v);
+				fSelection.left = std::min(fCurCell.h, anchor.h);
+				fSelection.right = std::max(fCurCell.h, anchor.h);
+				fSelection.top = std::min(fSelection.top, fCurCell.v);
+				fSelection.bottom = std::max(fSelection.bottom, fCurCell.v);
 			}
 			else
 			{
-				fSelection.top = min(fCurCell.v, anchor.v);
-				fSelection.bottom = max(fCurCell.v, anchor.v);
-				fSelection.left = min(fSelection.left, fCurCell.h);
-				fSelection.right = max(fSelection.right, fCurCell.h);
+				fSelection.top = std::min(fCurCell.v, anchor.v);
+				fSelection.bottom = std::max(fCurCell.v, anchor.v);
+				fSelection.left = std::min(fSelection.left, fCurCell.h);
+				fSelection.right = std::max(fSelection.right, fCurCell.h);
 			}
 
 			SelectionToRegion(newSel);
