@@ -101,6 +101,7 @@
 
 #include <Autolock.h>
 #include <Picture.h>
+#include <cstring>
 
 
 CCutCommand::CCutCommand(CCellView *inView, CContainer *inCells)
