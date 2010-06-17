@@ -445,7 +445,7 @@ void DOCUMENTFunction(Value *stack, int, CContainer *cells)
 	CCellView *thePane;
 	
 	if (cells && (thePane = cells->GetOwner()) != NULL)
-#if !__BEOS__
+#if !__BEOS__ && !__HAIKU__ 
 	{
 		Str255 s;
 		thePane->Doc()->GetDescriptor(s);
