@@ -42,6 +42,8 @@
 #define GLOBALS_H
 
 #include <GraphicsDefs.h>
+#include <Path.h>
+#include <Directory.h>
 
 _EXPORT extern double 	gRefNan, gCircleNan, gSqrtNan, gPowerNan, gValueNan, gDivNan,
 				gAddNan, gFinanceNan, gEvalNan, gInvTrigNan, gLogNan, gMulNan,
