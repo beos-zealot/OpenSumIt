@@ -104,7 +104,7 @@ public:
 		{ return fFonts.size(); };
 
 private:
-	vector<CFontMetrics> fFonts;
+	std::vector<CFontMetrics> fFonts;
 };
 
 extern CFontSizeTable gFontSizeTable;

@@ -86,7 +86,7 @@ public:
 		{ return fNextStyleID + 1; };
 	
 private:
-	map<int,CellStyle> fStyles;
+	std::map<int,CellStyle> fStyles;
 	int fNextStyleID;
 };
 
