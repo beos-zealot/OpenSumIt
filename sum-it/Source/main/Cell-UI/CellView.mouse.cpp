@@ -435,7 +435,7 @@ CCellView::SelectCol(BPoint where, int colNr)
 
 		cell c;
 		GetCellHitBy(curPoint, c);
-		curCol = max((int)c.h, 1);
+		curCol = std::max((int)c.h, 1);
 	
 		fCurCell.h = curCol;
 		if (fEntering)
@@ -556,10 +556,10 @@ void CCellView::SelectCell(BPoint where)
 		else
 			anchorCell.h = fSelection.left;
 
-		fSelection.Set(min(anchorCell.h, curCell.h),
-					   min(anchorCell.v, curCell.v),
-					   max(anchorCell.h, curCell.h),
-					   max(anchorCell.v, curCell.v));
+		fSelection.Set(std::min(anchorCell.h, curCell.h),
+					   std::min(anchorCell.v, curCell.v),
+					   std::max(anchorCell.h, curCell.h),
+					   std::max(anchorCell.v, curCell.v));
 	}
 	else
 	{
