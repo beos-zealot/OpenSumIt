@@ -80,7 +80,7 @@ enum SplitType {
 	noSplit, hSplit, vSplit
 };
 
-typedef map<cell,CellData> cellmap;
+typedef std::map<cell,CellData> cellmap;
 //typedef btree<cell,CellData> cellmap;
 
 class CContainer : public BLocker {
