@@ -161,9 +161,9 @@ void CRGBView::MessageReceived(BMessage *msg)
 					sender->TextView()->SelectAll();
 				}
 				
-				*fRedSlider = min(1.0, max(0.0, atof(fRed->Text()) / 255.0));
-				*fGreenSlider = min(1.0, max(0.0, atof(fGreen->Text()) / 255.0));
-				*fBlueSlider = min(1.0, max(0.0, atof(fBlue->Text()) / 255.0));
+				*fRedSlider = std::min(1.0, std::max(0.0, atof(fRed->Text()) / 255.0));
+				*fGreenSlider = std::min(1.0, std::max(0.0, atof(fGreen->Text()) / 255.0));
+				*fBlueSlider = std::min(1.0, std::max(0.0, atof(fBlue->Text()) / 255.0));
 
 				fOwner->SetRGB(*fRedSlider, *fGreenSlider, *fBlueSlider);
 				fOwner->PostMessage(msg_EndTracking);

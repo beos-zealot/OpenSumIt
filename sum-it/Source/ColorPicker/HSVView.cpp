@@ -291,8 +291,8 @@ void CHSVView::SetColor(roSColor& newColor)
 	fHue = newColor.m_Hue;
 
 	float cmax, cmin, delta;
-	cmax = max(newColor.m_Red, max(newColor.m_Green, newColor.m_Blue));
-	cmin = min(newColor.m_Red, min(newColor.m_Green, newColor.m_Blue));
+	cmax = std::max(newColor.m_Red, std::max(newColor.m_Green, newColor.m_Blue));
+	cmin = std::min(newColor.m_Red, std::min(newColor.m_Green, newColor.m_Blue));
 	delta = cmax - cmin;
 	
 	*fValue = cmax;
@@ -321,19 +321,19 @@ void CHSVView::KeyDown(const char *bytes, int32 numBytes)
 	switch (bytes[0])
 	{
 		case B_UP_ARROW:
-			ny = max(fWheelR.top, y - 1);
+			ny = std::max(fWheelR.top, y - 1);
 			break;
 		
 		case B_DOWN_ARROW:
-			ny = min(fWheelR.bottom, y + 1);
+			ny = std::min(fWheelR.bottom, y + 1);
 			break;
 		
 		case B_LEFT_ARROW:
-			nx = max(fWheelR.left, x - 1);
+			nx = std::max(fWheelR.left, x - 1);
 			break;
 		
 		case B_RIGHT_ARROW:
-			nx = min(fWheelR.right, x + 1);
+			nx = std::min(fWheelR.right, x + 1);
 			break;
 		
 		default:
