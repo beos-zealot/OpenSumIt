@@ -41,6 +41,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
+#include <DataIO.h>
+#include <MenuBar.h>
+
 #ifndef   CONFIG_H
 #include "Config.h"
 #endif
