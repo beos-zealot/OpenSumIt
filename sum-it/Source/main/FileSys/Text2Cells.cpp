@@ -120,7 +120,7 @@ int CTextConverter::GetNextChar()
 {
 	char c, d;
 	
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 	if (fText.Read(&c, 1) != 1)
 		c = kEndIndicator;
 	
@@ -157,7 +157,7 @@ int CTextConverter::GetNextChar()
 
 void CTextConverter::Retract()
 {
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 	fText.Seek(-1, SEEK_CUR);
 #else
 	fText.SetMarker(-1, streamFrom_Marker);
@@ -270,7 +270,7 @@ void CTextConverter::ConvertFromText(range& range, CCellView *inView,
 		StWriteLock lock(fContainer);
 		size_t size;
 		
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 		fText.Seek(0, SEEK_END);
 		size = fText.Position();
 		fText.Seek(0, SEEK_SET);
@@ -327,7 +327,7 @@ void CTextConverter::ConvertFromText(range& range, CCellView *inView,
 			}
 
 			if (progress)
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 				progress->Step(fText.Position());
 #else
 				progress->Step(fText.GetMarker());
@@ -400,7 +400,7 @@ void CTextConverter::ConvertToText(range *sRange, CCellView *inView)
 		if (fQuoteTextFields && v.fType == eTextData)
 			*bp++ = '"';
 		
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 		CHECKWRITE(fText, buffer, bp - buffer);
 #else
 		fText.WriteBlock(buffer, bp - buffer);
