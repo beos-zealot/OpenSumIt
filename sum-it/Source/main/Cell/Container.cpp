@@ -153,7 +153,7 @@ void CContainer::GetBounds(range& r)
 		{
 			if ((*ci).second.mType != eNoData)
 			{
-				maxX = max(maxX, (*ci).first.h);
+				maxX = std::max(maxX, (*ci).first.h);
 				maxY = (*ci).first.v;
 			}
 		}
