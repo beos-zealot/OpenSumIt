@@ -44,6 +44,8 @@ class CCellView;
 #include <BeBuild.h>
 #include <Handler.h>
 #include <Rect.h>
+#include <Picture.h>
+#include <Region.h>
 
 #ifndef cell_defined
 #define cell_defined 1
