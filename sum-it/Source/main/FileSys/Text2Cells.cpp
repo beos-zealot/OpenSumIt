@@ -345,7 +345,7 @@ void CTextConverter::ConvertFromText(range& range, CCellView *inView,
 	if (inView)
 		inView->DrawAllLines();
 
-	range.Set(1, 1, min(fMaxRight, (int)kColCount), min(fRow, (int)kRowCount));
+	range.Set(1, 1, std::min(fMaxRight, (int)kColCount), std::min(fRow, (int)kRowCount));
 } /* Text2Cells */
 
 void CTextConverter::ConvertToText(range *sRange, CCellView *inView)
