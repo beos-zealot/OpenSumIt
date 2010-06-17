@@ -269,7 +269,7 @@ void CCellView::AttachedToWindow()
 		gPrefs->GetPrefString("defdoc font style", bStyle),
 		gPrefs->GetPrefDouble("defdoc font size", bSize))].Font();
 	f.GetHeight(&fi);
-	x = max(x, (float)Round(fi.ascent + fi.descent + fi.leading + 1));
+	x = std::max(x, (float)Round(fi.ascent + fi.descent + fi.leading + 1));
 	
 	fCellHeights.SetValue(1, kRowCount, x);
 	

@@ -154,7 +154,7 @@ void CCellView::GetCellBounds(cell c, BRect& r)
 				if (fContainer->GetNextCellInRow(c))
 				{
 					GetCellRect(c, nextCellR);
-					r.right = min(nextCellR.left - 1, r.right);
+					r.right = std::min(nextCellR.left - 1, r.right);
 				}
 				break;
 			}
@@ -174,7 +174,7 @@ void CCellView::GetCellBounds(cell c, BRect& r)
 				if (fContainer->GetNextCellInRow(c))
 				{
 					GetCellRect(c, nextCellR);
-					r.right = min(nextCellR.left - 1, r.right);
+					r.right = std::min(nextCellR.left - 1, r.right);
 				}
 
 				while (rl > 1 && wl < fCellWidths[rl - 1])
@@ -185,7 +185,7 @@ void CCellView::GetCellBounds(cell c, BRect& r)
 				if (fContainer->GetPreviousCellInRow(c))
 				{
 					GetCellRect(c, nextCellR);
-					r.left = max(nextCellR.right + 1, r.left);
+					r.left = std::max(nextCellR.right + 1, r.left);
 				}
 				break;
 			}
@@ -203,7 +203,7 @@ void CCellView::GetCellBounds(cell c, BRect& r)
 				if (fContainer->GetPreviousCellInRow(c))
 				{
 					GetCellRect(c, nextCellR);
-					r.left = max(nextCellR.right + 2, r.left);
+					r.left = std::max(nextCellR.right + 2, r.left);
 				}
 				break;
 			}
