@@ -38,6 +38,7 @@
 
 #include "utf-support.h"
 #include <Debug.h>
+#include <cstring>
 
 int mstrlen(const char *s)
 {
