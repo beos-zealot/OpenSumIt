@@ -84,7 +84,7 @@
 #endif
 
 #include <stdarg.h>
-
+#include <cstring>
 #include <Autolock.h>
 
 extern int yyparse(void *ioResult);
