@@ -135,7 +135,7 @@
 #include "Container.h"
 #endif
 
-#include <algo.h>
+#include <algorithm>
 
 #include <support/Debug.h>
 
