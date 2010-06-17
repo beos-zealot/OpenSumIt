@@ -74,7 +74,7 @@
 #include "messages.h"
 #endif
 
-
+#include <cstring>
 #include <ctype.h>
 #include <Message.h>
 
