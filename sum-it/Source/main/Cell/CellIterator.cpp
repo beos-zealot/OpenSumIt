@@ -59,6 +59,7 @@
 #endif
 
 #include <Autolock.h>
+#include <cstring>
 
 CCellIterator::CCellIterator(CContainer *inContainer, range *sRange)
 	: fCellData(inContainer->fCellData)
