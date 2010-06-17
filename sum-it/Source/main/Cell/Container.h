@@ -84,8 +84,8 @@ typedef std::map<cell,CellData> cellmap;
 //typedef btree<cell,CellData> cellmap;
 
 class CContainer : public BLocker {
-	friend CCellIterator;
-	friend CCalculateJob;
+	friend class CCellIterator;
+	friend class CCalculateJob;
 
 	virtual ~CContainer();
 
