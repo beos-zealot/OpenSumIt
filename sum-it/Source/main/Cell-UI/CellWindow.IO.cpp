@@ -429,7 +429,7 @@ void CCellWindow::ReadData(BFile& file)
 {
 	file.Seek(0, SEEK_SET); 
 
-	BBufferIO inStream(&file, BBufferIO::DEFAULT_BUF_SIZE, false);
+	BBufferIO inStream(&file, 65536, false); 
 	BMallocIO outStream;
 	
 	try
