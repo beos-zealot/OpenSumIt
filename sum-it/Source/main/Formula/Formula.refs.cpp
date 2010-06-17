@@ -121,7 +121,7 @@ bool CFormula::RefersToName(const char *name) const
 			{
 				char *s = (char *)(fString + indx);
 				
-#if __BEOS__
+#if __BEOS__ || __HAIKU__
 				if (name == NULL || strcasecmp(name, s) == 0)
 					return true;
 #else
