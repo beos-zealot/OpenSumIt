@@ -49,7 +49,6 @@
 
 #include <Point.h>
 #include <Font.h>
-#include <View.h>
 
 const rgb_color
 	kColorTable[] =
