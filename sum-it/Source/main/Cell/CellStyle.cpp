@@ -48,6 +48,8 @@
 
 
 #include <Autolock.h>
+#include <cstring>
+
 
 CStyleTable gStyleTable;
 BLocker gStyleTableLock( "style_table_lock", true ) ;
@@ -77,7 +79,7 @@ CStyleTable::CStyleTable()
 
 int CStyleTable::GetStyleID(const CellStyle& cs)
 {
-	map<int,CellStyle>::iterator mi;
+	std::map<int,CellStyle>::iterator mi;
 	
 	for (mi = fStyles.begin(); mi != fStyles.end(); mi++)
 	{
