@@ -77,7 +77,7 @@
 #endif
 
 
-#include <algo.h>
+#include <algorithm>
 
 #include <Beep.h>
 #include <Picture.h>
