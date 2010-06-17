@@ -86,6 +86,8 @@
 
 #include <Message.h>
 #include <Autolock.h>
+#include <cstring>
+
 
 CFillCommand::CFillCommand(CCellView *inView, CContainer *inCells,
 	BMessage *msg)
