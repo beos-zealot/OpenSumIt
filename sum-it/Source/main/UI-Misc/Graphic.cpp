@@ -385,7 +385,7 @@ void CGraphic::TrackResize(BPoint where)
 			w += dx;
 			h += dy;
 			
-			ResizeTo( max(w, static_cast<float>(100)) , max(h, static_cast<float>(100)) ) ;
+			ResizeTo( std::max(w, static_cast<float>(100)) , std::max(h, static_cast<float>(100)) ) ;
 			
 			where = loc;
 		}
@@ -422,8 +422,8 @@ void CGraphic::MoveBy(float dx, float dy)
 	cell c;
 	BRect f(Frame()), r, upd;
 	BPoint p, k;
-	p.x = max(f.left + dx, fParent->CellBounds().left);
-	p.y = max(f.top + dy, fParent->CellBounds().top);
+	p.x = std::max(f.left + dx, fParent->CellBounds().left);
+	p.y = std::max(f.top + dy, fParent->CellBounds().top);
 	
 	dx = p.x - f.left;
 	dy = p.y - f.top;
