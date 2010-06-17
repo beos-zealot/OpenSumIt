@@ -64,3 +64,4 @@
 #define errSylkImportErr                       60
 #define msgGoOn                                61
 #define msgStop                                62
+#define errNoCurrentRecord                     63

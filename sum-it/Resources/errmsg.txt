@@ -61,3 +61,4 @@ errSylkErr = Inconsistent SYLK file format.
 errSylkImportErr = Error importing SYLK file, Cell %s contains an error.
 msgGoOn = Go on
 msgStop = Abort
+errNoCurrentRecord = Could not find current record.
