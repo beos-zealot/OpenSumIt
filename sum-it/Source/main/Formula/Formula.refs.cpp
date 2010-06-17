@@ -79,6 +79,7 @@
 #endif
 
 #include <Debug.h>
+#include <cstring>
 
 bool CFormula::RefersToName(const char *name) const
 {
