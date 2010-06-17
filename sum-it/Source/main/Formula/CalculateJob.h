@@ -55,6 +55,8 @@ class StProgress;
 #include "MThread.h"
 #endif
 
+#include <View.h>
+
 
 class CCalculateJob : public MThread {
 public:
