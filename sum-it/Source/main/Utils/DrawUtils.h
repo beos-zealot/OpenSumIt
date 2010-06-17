@@ -47,6 +47,7 @@
  ***/
 
 #include <GraphicsDefs.h>
+#include <View.h>
 
 extern const rgb_color kColorTable[], kGrayTable[14], kB_GrayTable[];
 
