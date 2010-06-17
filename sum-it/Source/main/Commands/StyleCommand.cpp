@@ -51,6 +51,7 @@
 #include "undostrs.h"
 #include "StyleCommand.h"
 #include "StLocker.h"
+#include <cstring>
 
 CStyleCommand::CStyleCommand(CCellView *inView, CContainer *inContainer)
 	: CCellCommand(kStyleStrID, inView, inContainer)
