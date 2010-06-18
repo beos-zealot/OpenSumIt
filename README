@@ -4,8 +4,6 @@ FOREWORD
 
 My main goal was to fix errors compiling Sum-It with gcc4 and to open possibility, that everybody interested could download or build Sum-It and start testing, fixing, developing, expanding and so on...
 
-All work has been done on HAIKU gcc4 dev. environment only, so i am not aware if my changes broke compiling on HAIKU gcc2 (read TODO).
-
 Sum-It build system needs special tools: bsl and rez. Some people were frustrated by trying to compile Sum-It, because these tools were missing on this repository. It's good that they still were in old place, so now they have been imported to new home.
 
 
@@ -13,6 +11,8 @@ BUILDING
 -------------
 
 Open Sum-It still uses original build system. All you need is to type few times "make" in terminal and you'll have working binary. 
+
+Added automatic gcc version detection script to makefile, so it's possible to build with both gcc2 and gcc4 without worries.
 
 1. in "bsl" directory type 'make'   
 2. copy 'bsl' binary to '/boot/common/bin'
@@ -22,9 +22,8 @@ Open Sum-It still uses original build system. All you need is to type few times 
 5. You have working Open Sum-It binary
 
 
-P.S. by default build system makes DEBUG version, so binary weights about 3.82 MB, STRIPED version only ~700KB.
+P.S. by default build system makes binaries with DEBUG turned on, so they are bit heavy.
 
 
-
-2010.06.17
+2010.06.18
 beos_zealot
