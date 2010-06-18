@@ -1,11 +1,10 @@
 
-Try to build Sum-It with gcc2.
++ DONE. Try to build Sum-It with gcc2. (Tested on HAIKU R1 alpha2 - builds with gcc2, added gcc version detection script to makefile.)
 
+- If i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declatation manually till i figure out what's wrong...
 
-compare source code of sum-it rez tool vs pe-editor rez tool, the later is newer but lacks some command line options which uses sum-it build system... maybe there were some fixes/optimizations or else, that can be reused  
+- Get rid of some old code leftovers for other platforms.  
 
+- Compare source code of sum-it rez tool vs pe-editor rez tool, the later is newer but lacks some command line options which uses sum-it build system... maybe there were some fixes/optimizations or else, that can be reused.
 
-if i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declatation manually till i figure out what's wrong...
-
-
-Get rid of some old code leftovers for other platforms.  
+- Fix compiling warnings.
