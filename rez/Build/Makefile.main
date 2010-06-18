@@ -36,7 +36,14 @@ DEBUG		= 0
 DEFINES		= # BETA DEMO
 BUILDFIRST	= 
 #BUILDLAST	=
+
+GCC_VER = gcc$(word 1, $(subst -, , $(subst ., , $(shell gcc -dumpversion))))
+ifeq ($(GCC_VER),gcc2)
+LIBS		= be root stdc++.r4
+else
 LIBS		= be root stdc++
+endif
+
 LIBPATHS	= 
 INCPATHS	= 
 WARNINGS	=  -Wall -Wno-multichar -Wno-ctor-dtor-privacy -Wno-sign-compare
@@ -183,3 +190,6 @@ dist:
 test:
 	@ printf "HAVE_REZ: %s\\n" $(HAVE_REZ)
 	@ printf "REZ = %s\\n" $(REZ)
+	
+compiler:	
+	@ printf "Compiler: %s\\n" $(GCC_VER)
