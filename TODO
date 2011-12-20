@@ -1,7 +1,7 @@
 
 + DONE. Try to build Sum-It with gcc2. (Tested on HAIKU R1 alpha2 - builds with gcc2, added gcc version detection script to makefile.)
 
-- If i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declatation manually till i figure out what's wrong...
+- If i am not misunderstood, bsl has to generate errmsg.h header from Resources/errmsg.txt automatically, but now it doesn't generate. Spotted when was fixing compiler error about missing declaration of 'errNoCurrentRecord'. Added declaration manually till i figure out what's wrong...
 
 - Get rid of some old code leftovers for other platforms.  
 
