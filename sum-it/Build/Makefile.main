@@ -54,6 +54,7 @@ MAKE_STATIC      = $(AR) $@ $+
 MAKE_BSL        := @ Build/MakeBSL.sh
 MAKE_CXX         = @ $(CC) -c $< -o $@ $(CPPFLAGS) $(CFLAGS)
 MAKE_RSRC	    := rez
+MAKE_RDEF        := @ Build/MakeRDEF.sh
 
 MAKE_DEPEND_C   := @ Build/MakeCDepend.sh
 MAKE_DEPEND_R   := @ Build/MakeRDepend.sh
@@ -125,6 +126,10 @@ $(DEP_DIR)/%_cpp.d: %.cpp
 	$(MAKE_DEP_DIR)
 	$(ECHO_TGT)
 	$(MAKE_DEPEND_C) $(CPPFLAGS) -c $< -dep $@ -odir $(OBJ_DIR)
+
+sum-it-types.rsrc:
+	@ printf "Generating sum-it-types.rsrc from sum-it-types.rdef\n"	
+	$(MAKE_RDEF)
 
 $(DEP_DIR)/%_r.d: %.r
 	$(MAKE_DEP_DIR)
