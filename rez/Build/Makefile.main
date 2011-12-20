@@ -177,6 +177,7 @@ FORCE:
 
 Source/rez_parser.cpp rez_parser.cpp: Source/rez_parser.y
 	bison -d -o Source/rez_parser.cpp $<
+	mv -f Source/rez_parser.hpp Source/rez_parser.cpp.h
 
 Source/rez_scanner.cpp rez_scanner.cpp: Source/rez_scanner.l
 	flex -i -oSource/rez_scanner.cpp $<
