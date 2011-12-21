@@ -184,7 +184,7 @@ void CCellWindow::Save()
 			FailOSErr(dir.CreateFile(fEntry->name, &file, true), errIOGeneral);
 			WriteData(file);
 	
-			BNodeInfo(&file).SetType("application/x-sum-it-document");
+			BNodeInfo(&file).SetType(kOpenSumItMimeString);
 			if (existed)
 			{
 				FailOSErr(file.SetCreationTime(created), errIOGeneral);
@@ -441,12 +441,12 @@ void CCellWindow::ReadData(BFile& file)
 		BNodeInfo ni(&file);
 		ni.GetType(mimetype);
 		
-		if (strcmp(mimetype, "application/x-sum-it-document"))
+		if (strcmp(mimetype, kOpenSumItMimeString))
 		{
-			if (ni.SetType("application/x-sum-it-document"))
+			if (ni.SetType(kOpenSumItMimeString))
 			{
 				BFile F(fEntry, B_READ_WRITE);
-				BNodeInfo(&F).SetType("application/x-sum-it-document");
+				BNodeInfo(&F).SetType(kOpenSumItMimeString);
 			}
 		}
 		return;

@@ -191,7 +191,7 @@ int main(int argc, char *argv[])
 }
 
 CSumItApplication::CSumItApplication()
-	  : BApplication("application/x-vnd.open.sum-it")
+	  : BApplication(kOpenSumItSignature)
 {
 #if PRERELEASE
 //	{

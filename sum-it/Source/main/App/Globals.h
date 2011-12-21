@@ -69,10 +69,10 @@ extern int
 extern BPath		gAppName;
 extern BDirectory	*gAppDir, *gCWD;
 
-#define kNanStrings		1
+#define kNanStrings			1
 #define kFormattingStrings	2
 #define kTrueIndex			0
-#define kFalseIndex		1
+#define kFalseIndex			1
 
 const rgb_color
 	kRed 		= {255, 0, 0, 255},
@@ -97,8 +97,10 @@ const rgb_color
 	kPYellow 	= {255, 255, 0xaa, 255},
 	kHighlight = { 80, 80, 80, 255};
 
-const char kSumItSignature[] = "x-vnd.BeatWare-sum-it";
+//const char kSumItSignature[] = "x-vnd.BeatWare-sum-it";
+#define kOpenSumItSignature "application/x-vnd.open.sum-it"
+#define kOpenSumItMimeString "application/x-sum-it-document"
 
-extern bool gDatatypesInstalled;
+//extern bool gDatatypesInstalled; //unused
 
 #endif
