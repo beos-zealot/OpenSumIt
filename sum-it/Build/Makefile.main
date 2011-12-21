@@ -155,7 +155,7 @@ make:
 
 clean:
 	@ printf "Cleaning... "
-	@-rm -rf $(APP) $(LIB_DIR) $(OBJ_DIR) $(DEP_DIR) 
+	@-rm -rf $(APP) $(LIB_DIR) $(OBJ_DIR) $(DEP_DIR) Resources/sum-it-types.rsrc
 	@ printf "Done\\n"
 
 list:
