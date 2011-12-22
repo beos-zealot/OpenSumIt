@@ -66,6 +66,8 @@ public:
 	virtual void	MessageReceived(BMessage *inMessage);
 	virtual void	RefsReceived(BMessage *inMessage);
 	
+	void			InstallMimeType();
+	
 	CDialog* FindDialog() { return fFindDialog; };
 
 	CCellWindow* OpenWindow(const entry_ref& inRef) throw();

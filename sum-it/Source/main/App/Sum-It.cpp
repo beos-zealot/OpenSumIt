@@ -134,6 +134,8 @@
 #include <Path.h>
 #include <Directory.h>
 #include <FilePanel.h>
+#include <MimeType.h>
+#include <String.h>
 
 #define PRERELEASE 0
 
@@ -171,9 +173,6 @@ int main(int argc, char *argv[])
 	app.Run();
 	
 	gPrefs->WritePrefFile();
-	
-//	if (gDatatypesInstalled) 
-//		DATAShutdown();
 	
 	delete gPrefs;
 	CFontStyle::Cleanup();
@@ -290,6 +289,8 @@ CSumItApplication::CSumItApplication()
 		gWithEqualSign = gPrefs->GetPrefInt("formula starts with equal", 0);
 		gGridColor = gPrefs->GetPrefInt("dark gridlines") ? 10 : 6;
 		
+		InstallMimeType();
+		
 		SetPulseRate(1000000);
 	}
 	
@@ -307,12 +308,94 @@ CSumItApplication::CSumItApplication()
 	}
 }
 
-
 void
 CSumItApplication::AboutRequested()
 {
 	new CAboutBox;
 }	
+
+void
+CSumItApplication::InstallMimeType()
+{
+	// install mime type of documents
+	BMimeType mime(kOpenSumItMimeString);
+	status_t ret = mime.InitCheck();
+	if (ret != B_OK) {
+		fprintf(stderr, "Could not init native document mime type (%s): %s.\n",
+			kOpenSumItMimeString, strerror(ret));
+		return;
+	}
+
+	if (mime.IsInstalled() && !(modifiers() & B_SHIFT_KEY)) {
+		// mime is already installed, and the user is not
+		// pressing the shift key to force a re-install
+		printf("Mime is already installed!\n");
+		return;
+	}
+
+	ret = mime.Install();
+	if (ret != B_OK && ret != B_FILE_EXISTS) {
+		fprintf(stderr, "Could not install native document mime type (%s): %s.\n",
+			kOpenSumItMimeString, strerror(ret));
+		return;
+	}
+	// set preferred app
+	ret = mime.SetPreferredApp(kOpenSumItSignature);
+	if (ret != B_OK) {
+		fprintf(stderr, "Could not set native document preferred app: %s\n",
+			strerror(ret));
+	}
+
+	// set descriptions
+	ret = mime.SetShortDescription("OpenSum-It Spreadsheet");
+	if (ret != B_OK) {
+		fprintf(stderr, "Could not set short description of mime type: %s\n",
+			strerror(ret));
+	}
+	ret = mime.SetLongDescription("OpenSum-It Spreadsheet File");
+	if (ret != B_OK) {
+		fprintf(stderr, "Could not set long description of mime type: %s\n",
+			strerror(ret));
+	}
+
+	// set extensions
+	BMessage message('extn');
+	message.AddString("extensions", "sumit"); //maybe change to something else or add more variations?
+	ret = mime.SetFileExtensions(&message);
+	if (ret != B_OK) {
+		fprintf(stderr, "Could not set extension of mime type: %s\n",
+			strerror(ret));
+	}
+
+	// set sniffer rule
+	const char* snifferRule = "0.50 (\"VR\")"; //maybe change to the longer fragment?
+	ret = mime.SetSnifferRule(snifferRule);
+	if (ret != B_OK) {
+		BString parseError;
+		BMimeType::CheckSnifferRule(snifferRule, &parseError);
+		fprintf(stderr, "Could not set sniffer rule of mime type: %s\n",
+			parseError.String());
+	}
+
+	// set document icon
+	BResources* resources = AppResources();
+		// does not need to be freed (belongs to BApplication base)
+	if (resources != NULL) {
+		size_t size;
+		const void* iconData = resources->LoadResource('VICN', "OpenSum-It_DocumentIcon",
+			&size);
+		if (iconData != NULL && size > 0) {
+			if (mime.SetIcon(reinterpret_cast<const uint8*>(iconData), size)
+				!= B_OK) {
+				fprintf(stderr, "Could not set vector icon of mime type.\n");
+			}
+		} else {
+			fprintf(stderr, "Could not find icon in app resources "
+				"(data: %p, size: %ld).\n", iconData, size);
+		}
+	} else
+		fprintf(stderr, "Could not find app resources.\n");
+}
 
 void
 CSumItApplication::ReadyToRun()

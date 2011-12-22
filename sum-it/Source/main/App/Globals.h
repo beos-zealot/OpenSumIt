@@ -97,10 +97,7 @@ const rgb_color
 	kPYellow 	= {255, 255, 0xaa, 255},
 	kHighlight = { 80, 80, 80, 255};
 
-//const char kSumItSignature[] = "x-vnd.BeatWare-sum-it";
 #define kOpenSumItSignature "application/x-vnd.open.sum-it"
 #define kOpenSumItMimeString "application/x-sum-it-document"
-
-//extern bool gDatatypesInstalled; //unused
 
 #endif
