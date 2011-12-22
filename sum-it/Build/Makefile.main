@@ -1,4 +1,4 @@
-APP   := Sum-It
+APP   := OpenSum-It
 DEBUG := 1
 
 BEOS_VERS   :=r$(shell uname -r)

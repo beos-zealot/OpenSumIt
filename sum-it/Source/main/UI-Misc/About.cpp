@@ -92,7 +92,7 @@ AboutStringView::AboutStringView( void )
 }
 
 CAboutBox :: CAboutBox()
-: BWindow(BRect(50, 50, 350, 150), "Open Sum-It",
+: BWindow(BRect(50, 50, 350, 150), "OpenSum-It",
 		B_TITLED_WINDOW,
 		B_NOT_ZOOMABLE | B_NOT_RESIZABLE | B_WILL_ACCEPT_FIRST_CLICK )
 {
