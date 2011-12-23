@@ -189,7 +189,7 @@ Resource 'MENU' (7, "Help")
 {
 	"Help",
 	{
-		Item		{	"On-line Help", 'Help', none, noKey },
+		Item		{	"Help", 'Help', none, noKey },
 		Item		{	"About", '_ABR', none, noKey },
 	}
 };

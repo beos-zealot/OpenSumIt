@@ -584,9 +584,9 @@ void CSumItApplication::ShowHelp()
 	try
 	{
 		BEntry entry;
-		gAppDir->FindEntry("Documentation", &entry);
+		gAppDir->FindEntry("Docs", &entry);
 		BDirectory docdir(&entry);
-		docdir.FindEntry("sum-it.html", &entry);
+		docdir.FindEntry("index.html", &entry);
 		
 		if (entry.InitCheck() || !entry.Exists())
 			THROW((errNoDocumentation));
@@ -599,7 +599,8 @@ void CSumItApplication::ShowHelp()
 
 		entry_ref browser;
 		if (be_roster->FindApp("text/html", &browser) || 
-				be_roster->FindApp("application/x-vnd.Be-NPOS", &browser))
+				be_roster->FindApp("application/x-vnd.Haiku-WebPositive", &browser) ||
+				be_roster->FindApp("application/x-vnd.Mozilla-Firefox", &browser))
 			THROW((errNoBrowser));
 		
 		if (be_roster->IsRunning(&browser))
