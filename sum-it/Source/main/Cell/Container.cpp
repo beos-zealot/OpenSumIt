@@ -155,7 +155,6 @@ void CContainer::GetBounds(range& r)
 			{
 				maxX = std::max(maxX, (*ci).first.h);
 				maxY = (*ci).first.v;
-//				maxY = std::max(maxY, (*ci).first.v);				
 			}
 		}
 		
