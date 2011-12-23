@@ -159,7 +159,9 @@ static void MapFunction(FuncCallData& fcd)
 	{
 		case 0x0000: fcd.funcNr = kCOUNTFuncNr; break;
 		case 0x0001: fcd.funcNr = kIFFuncNr; break;
-
+		
+		case 0x0004: fcd.funcNr = kSUMFuncNr; break;
+		
 		case 0x0006: fcd.funcNr = kMINFuncNr; break;
 		case 0x0007: fcd.funcNr = kMAXFuncNr; break;
 		case 0x0008: fcd.funcNr = kROWFuncNr; break;
