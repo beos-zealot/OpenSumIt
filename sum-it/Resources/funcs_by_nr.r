@@ -125,6 +125,7 @@ resource 'Func' (128, "Functions")
 		"TRUE", 0, 79, 7,
 		"OR", 65535, 80, 7,
 		"AND", 65535, 81, 7,
-		"POWER", 2, 82, 4
+		"POWER", 2, 82, 4,
+		"DEC2HEX", 2, 83, 8
 	}
 };

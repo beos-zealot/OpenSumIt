@@ -94,6 +94,7 @@ void CPasteFunctionDialog::PostInit()
 	fMenu->AddItem(new BMenuItem("Statistical", new BMessage(msg_MenuChanged)));
 	fMenu->AddItem(new BMenuItem("Text", new BMessage(msg_MenuChanged)));
 	fMenu->AddItem(new BMenuItem("Logical", new BMessage(msg_MenuChanged)));
+	fMenu->AddItem(new BMenuItem("Engineering", new BMessage(msg_MenuChanged)));
 	fMenu->AddItem(new BMenuItem("Plugins", new BMessage(msg_MenuChanged)));
 
 	fMenu->FindItem("Cell")->SetMarked(true);

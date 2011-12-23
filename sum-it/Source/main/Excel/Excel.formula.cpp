@@ -224,6 +224,8 @@ static void MapFunction(FuncCallData& fcd)
 		case 0x00f7: fcd.funcNr = kDBFuncNr; break;
 		
 		case 0x0151: fcd.funcNr = kPOWERFuncNr; break;
+		
+//		case 0x0---: fcd.funcNr = kDEC2HEXFuncNr; break; //find Excel's DEC2HEX function nr and map it !!!
 
 		default: fcd.funcNr = -1;
 	}

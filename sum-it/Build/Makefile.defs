@@ -215,6 +215,7 @@ OBJS      += $(FORMULA_OBJS)
 FUNCTIONS_SRC := \
   ./Source/main/Functions/FunctionUtils.cpp \
   ./Source/main/Functions/Functions.date-time.cpp \
+  ./Source/main/Functions/Functions.engineering.cpp \
   ./Source/main/Functions/Functions.finance.cpp \
   ./Source/main/Functions/Functions.logical.cpp \
   ./Source/main/Functions/Functions.math.cpp \

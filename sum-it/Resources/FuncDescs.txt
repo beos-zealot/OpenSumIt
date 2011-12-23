@@ -81,3 +81,4 @@ Logical True
 Logical Or
 Logical And
 Number raised to a power
+Decimal to hexadecimal
