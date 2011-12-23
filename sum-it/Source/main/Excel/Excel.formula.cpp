@@ -222,6 +222,8 @@ static void MapFunction(FuncCallData& fcd)
 		case 0x00d6: fcd.funcNr = kASCFuncNr; fcd.argCnt = 1; break;
 
 		case 0x00f7: fcd.funcNr = kDBFuncNr; break;
+		
+		case 0x0151: fcd.funcNr = kPOWERFuncNr; break;
 
 		default: fcd.funcNr = -1;
 	}

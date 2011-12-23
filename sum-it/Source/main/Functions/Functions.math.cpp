@@ -210,6 +210,18 @@ void PIFunction(Value *stack, int, CContainer *)
 	stack[0] = 3.141592653589793239;
 }
 
+void POWERFunction(Value *stack, int argCnt, CContainer *cells)
+{
+	double number;
+	double power;
+
+	if (GetDoubleArgument(stack, argCnt, 1, &number) &&
+		GetDoubleArgument(stack, argCnt, 2, &power))
+		stack[0] = pow(number, power);
+	else
+		stack[0] = gRefNan;
+}
+
 void RANDOMFunction(Value *stack, int, CContainer *)
 {
 	stack[0] = (double)rand();

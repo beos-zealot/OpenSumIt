@@ -124,6 +124,7 @@ enum {
 	kTRUEFuncNr,
 	kORFuncNr,
 	kANDFuncNr,
+	kPOWERFuncNr,
 	kFunctionCount
 };
 
@@ -209,5 +210,6 @@ void YEARFunction(Value *stack, int argCnt, CContainer *cells);
 void TRUEFunction(Value *stack, int argCnt, CContainer *cells);
 void ANDFunction(Value *stack, int argCnt, CContainer *cells);
 void ORFunction(Value *stack, int argCnt, CContainer *cells);
+void POWERFunction(Value *stack, int argCnt, CContainer *cells);
 
 #endif

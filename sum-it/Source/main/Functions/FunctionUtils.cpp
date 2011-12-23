@@ -226,6 +226,7 @@ void SetupDefaultFuncs()
 	gFuncs[kYEARFuncNr] = YEARFunction;
 	gFuncs[kORFuncNr] = ORFunction;
 	gFuncs[kANDFuncNr] = ANDFunction;
+	gFuncs[kPOWERFuncNr] = POWERFunction;
 } /* InitFunctions */
 
 void LoadPlugIns()

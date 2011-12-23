@@ -80,3 +80,4 @@ Year
 Logical True
 Logical Or
 Logical And
+Number raised to a power
