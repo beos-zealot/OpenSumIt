@@ -145,7 +145,7 @@ void CContainer::GetBounds(range& r)
 	if (GetCellCount())
 	{
 		cellmap::iterator ci;
-		short maxX = 0, maxY;
+		short maxX = 0, maxY = 0;
 		
 		r.left = r.top = 1;
 		
@@ -155,6 +155,7 @@ void CContainer::GetBounds(range& r)
 			{
 				maxX = std::max(maxX, (*ci).first.h);
 				maxY = (*ci).first.v;
+//				maxY = std::max(maxY, (*ci).first.v);				
 			}
 		}
 		

@@ -435,6 +435,8 @@ void CCellView::WriteSylk (FILE *f)
 	range r;
 	fContainer->GetBounds(r);
 	CCellIterator iter(fContainer, &r);
+	int i, firstCol, numCols;
+	float colWidth = 0.0;
 	
 	fputs("ID;PSum-It for BeOS\n", f);
 	fprintf(f, "B;X%d;Y%d\n", r.right - r.left + 1, r.bottom - r.top + 1);
@@ -470,6 +472,17 @@ void CCellView::WriteSylk (FILE *f)
 		}
 		
 		fputc('\n', f);
+	}
+	numCols = (r.right - r.left + 1);
+	colWidth = GetColumnWidth(1);
+	for (i = 1, firstCol = 1; i <= numCols + 1; i++) {
+		if ((i == numCols) || (colWidth != GetColumnWidth(i))) {
+			/* the offset limits drifting */
+			fprintf(f, "F;W%d %d %ld\n", firstCol, i-1, (long)(colWidth / be_plain_font->StringWidth("x") + 0.95));
+			firstCol = i;
+			if (i <= numCols)
+				colWidth = GetColumnWidth(i);
+		}	
 	}
 	fputs("E\n", f);
 } /* WriteSylk */
