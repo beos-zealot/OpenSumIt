@@ -358,17 +358,14 @@ CSumItApplication::InstallMimeType()
 			strerror(ret));
 	}
 
-	// set extensions
-	BMessage message('extn');
-	message.AddString("extensions", "sumit"); //maybe change to something else or add more variations?
-	ret = mime.SetFileExtensions(&message);
-	if (ret != B_OK) {
-		fprintf(stderr, "Could not set extension of mime type: %s\n",
-			strerror(ret));
-	}
-
 	// set sniffer rule
-	const char* snifferRule = "0.50 (\"VR\")"; //maybe change to the longer fragment?
+	
+	// short explanation what 0x565200020300 means:
+	// 0x5652 (chunk type) 'VR' - version
+	// 0x0002 (chunk size)  
+	// 0x0300 (chunk value)  - version number
+	// More info in sum-it/Source/main/FileSys/FileFormat.h
+	const char* snifferRule = "1.0 (0x565200020300)";
 	ret = mime.SetSnifferRule(snifferRule);
 	if (ret != B_OK) {
 		BString parseError;
