@@ -1,29 +1,24 @@
 
-FOREWORD
-----------------
-
-My main goal was to fix errors compiling Sum-It with gcc4 and to open possibility, that everybody interested could download or build Sum-It and start testing, fixing, developing, expanding and so on...
-
-Sum-It build system needs special tools: bsl and rez. Some people were frustrated by trying to compile Sum-It, because these tools were missing on this repository. It's good that they still were in old place, so now they have been imported to new home.
-
-
 BUILDING
 -------------
 
-Open Sum-It still uses original build system. All you need is to type few times "make" in terminal and you'll have working binary. 
-
-Added automatic gcc version detection script to makefile, so it's possible to build with both gcc2 and gcc4 without worries.
+Manual building steps:
 
 1. in "bsl" directory type 'make'   
 2. copy 'bsl' binary to '/boot/common/bin'
 1. in "rez" directory type 'make'   
 2. copy 'rez' binary to '/boot/common/bin'
 4. in 'sum-it' directory type 'make'
-5. You have working Open Sum-It binary
+5. You have working OpenSum-It binary
+
+All above steps can be done in one go automatically using shell script:
+
+> build.sh
 
 
-P.S. by default build system makes binaries with DEBUG turned on, so they are bit heavy.
+
+!!! By default build system makes OpenSum-It binary with DEBUG turned on, so it is a bit heavy.
 
 
-2010.06.18
+2012.07.09
 beos_zealot
