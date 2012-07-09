@@ -273,7 +273,7 @@ long DecodeHuffman(const void *inData, void **outData)
 	struct node *root, *n;
 	unsigned short *code;
 	unsigned char *ascii, *sp, *dp;
-	long i, j, c, l;
+	long i, j, l;
 	struct HuffmanHeader *h;
 	
 	h = (struct HuffmanHeader *)inData;
@@ -306,7 +306,7 @@ long DecodeHuffman(const void *inData, void **outData)
 		return -1;
 
 /* en start decoderen */
-	c = l = 0;
+	l = 0;
 	n = root;
 	
 	for (i = 0; i < h->hCompressedLength && l < h->hSourceLength; i++)
