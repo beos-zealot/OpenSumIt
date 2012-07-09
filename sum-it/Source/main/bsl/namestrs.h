@@ -8,4 +8,5 @@
 #define nameStat                                4
 #define nameText                                5
 #define nameLog                                 6
-#define namePlug                                7
+#define nameEng                                 7
+#define namePlug                                8

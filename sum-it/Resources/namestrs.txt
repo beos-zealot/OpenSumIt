@@ -5,4 +5,5 @@ nameMath = Math
 nameStat = Statistical
 nameText = Text
 nameLog = Logical
+nameEng = Engeneering
 namePlug = Plugins
