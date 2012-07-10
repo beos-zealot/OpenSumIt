@@ -44,6 +44,7 @@
 #include "Functions.h"
 #include "Globals.h"
 
+
 void ABSFunction(Value *stack, int argCnt, CContainer *cells)
 {
 	double d;
@@ -121,6 +122,22 @@ void ATANFunction(Value *stack, int argCnt, CContainer *cells)
 		stack[0] = atan(d);
 	else
 		stack[0] = gRefNan;
+}
+
+void ATAN2Function(Value *stack, int argCnt, CContainer *cells)
+{
+	double x, y;
+	
+	if (GetDoubleArgument(stack, argCnt, 1, &x) &&
+		GetDoubleArgument(stack, argCnt, 2, &y))
+	{
+		if (x==0 && y==0)
+			stack[0] = gDivNan;
+		else
+			stack[0] = atan2(y,x);
+	}		
+	else
+		stack[0] = gValueNan;
 }
 
 void COSFunction(Value *stack, int argCnt, CContainer *cells)

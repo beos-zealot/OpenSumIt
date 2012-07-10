@@ -208,7 +208,8 @@ static void MapFunction(FuncCallData& fcd)
 		case 0x0049: fcd.funcNr = kSECONDFuncNr; fcd.argCnt = 1; break;
 
 		case 0x004e: fcd.funcNr = kOFFSETFuncNr; break;
-
+		
+		case 0x0061: fcd.funcNr = kATAN2FuncNr; break;
 		case 0x0062: fcd.funcNr = kASINFuncNr; fcd.argCnt = 1; break;
 		case 0x0063: fcd.funcNr = kACOSFuncNr; fcd.argCnt = 1; break;
 		case 0x0064: fcd.funcNr = kCHOOSEFuncNr; break;

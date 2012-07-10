@@ -228,6 +228,7 @@ void SetupDefaultFuncs()
 	gFuncs[kANDFuncNr] = ANDFunction;
 	gFuncs[kPOWERFuncNr] = POWERFunction;
 	gFuncs[kDEC2HEXFuncNr] = DEC2HEXFunction;
+	gFuncs[kATAN2FuncNr] = ATAN2Function;
 } /* InitFunctions */
 
 void LoadPlugIns()
