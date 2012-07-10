@@ -57,5 +57,6 @@ private:
 	
 	CCellView *fCellView;
 	BListView *fList;
+	BTextView *fFuncDescription;
 	BMenu *fMenu;
 };

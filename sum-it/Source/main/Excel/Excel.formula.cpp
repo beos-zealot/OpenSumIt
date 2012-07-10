@@ -223,7 +223,9 @@ static void MapFunction(FuncCallData& fcd)
 		case 0x007F: fcd.funcNr = kISTEXTFuncNr; fcd.argCnt = 1; break;
 
 		case 0x00d6: fcd.funcNr = kASCFuncNr; fcd.argCnt = 1; break;
-
+		
+		case 0x00a9: fcd.funcNr = kCOUNTAFuncNr; break; 	// ? excel 2007 and later - fcd.argCnt = 255; 
+															// ? excel 2003 and earlier - fcd.argCnt = 30;
 		case 0x00f7: fcd.funcNr = kDBFuncNr; break;
 		
 		case 0x0151: fcd.funcNr = kPOWERFuncNr; break;

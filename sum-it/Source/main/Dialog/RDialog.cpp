@@ -209,6 +209,11 @@ void CRDialog::ConstructFromTemplate(BPositionIO& buf)
 				ReadCString(buf, 255, label);
 				nv = AddStringView(r, name, label, v);
 				break;
+			case 'txtv':
+				ReadRect(buf, r);
+				ReadCString(buf, 255, name);
+				nv = AddTextView(r, name, v);
+				break;	
 			case 'user':
 				ReadRect(buf, r);
 				ReadCString(buf, 255, name);

@@ -93,6 +93,8 @@ public:
 		int maxLen = 0, BView *inView = NULL);
 	BStringView* AddStringView(BRect inFrame, const char *inName,
 		const char *inText, BView *inView = NULL);
+	BTextView* AddTextView(BRect inFrame, const char *inName,
+		BView *inView = NULL);
 	BMenuField* AddMenuField(BRect inFrame, const char *inName,
 		const char *inLabel, BMenu *inMenu, BView *inView = NULL);
 	BMenu* AddPopUpMenu(BRect inFrame, const char *inName,

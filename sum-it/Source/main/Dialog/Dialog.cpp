@@ -238,6 +238,27 @@ BStringView* CDialog::AddStringView(BRect inFrame,
 	return ctrl;
 } /* CDialog::AddStringView */
 
+BTextView* CDialog::AddTextView(BRect inFrame,
+	const char *inName, BView *inView)
+{
+	if (!inView)
+		inView = fMainView;
+
+	BRect txtFrame = inFrame;
+	txtFrame.top -= 5;
+	txtFrame.bottom -= 5;
+	txtFrame.left -= 5;
+	txtFrame.right -= 5;
+
+	BTextView *ctrl = new BTextView(inFrame, inName, txtFrame, B_FOLLOW_TOP | B_FOLLOW_LEFT, B_WILL_DRAW);
+	inView->AddChild(ctrl);
+	ctrl->SetViewColor(inView->ViewColor());
+	ctrl->MakeSelectable(false);
+	ctrl->MakeEditable(false);
+	
+	return ctrl;
+} /* CDialog::AddStringView */
+
 BMenuField* CDialog::AddMenuField(BRect inFrame,
 	const char *inName, const char *inLabel,
 	BMenu *inMenu, BView *inView)

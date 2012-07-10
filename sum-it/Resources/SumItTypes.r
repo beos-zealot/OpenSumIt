@@ -61,6 +61,10 @@ Type 'DLOG' {
 				rect;
 				cstring;
 				cstring;
+			case TextView:
+				key longint = 'txtv';
+				rect;
+				cstring;
 			case User:
 				key longint = 'user';
 				rect;

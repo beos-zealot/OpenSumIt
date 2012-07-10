@@ -44,6 +44,59 @@
 #include "Functions.h"
 #include "Globals.h"
 
+void COUNTAFunction(Value *stack, int argCnt, CContainer *cells)
+{
+	int i;
+	long countedCells;
+	range cRange;
+	cell c;
+	Value val;
+	double d;
+	bool b;
+	time_t date;
+	char s[256];
+
+	countedCells = 0;
+
+	for (i = 1; i <= argCnt; i++)
+	{
+		if (GetBooleanArgument(stack, argCnt, i, &b))
+		{
+			countedCells++;
+		}
+		else if (GetDoubleArgument(stack, argCnt, i, &d))
+		{
+			countedCells++;
+		}
+		else if (GetTimeArgument(stack, argCnt, i, &date))
+		{
+			countedCells++;
+		}
+		else if (GetTextArgument(stack, argCnt, i, s))
+		{
+			countedCells++;
+		}		
+		else if (GetRangeArgument(stack, argCnt, i, &cRange))
+		{
+			if (!cRange.IsValid())
+			{
+				stack[0] = gRefNan;
+				return;
+			}
+			
+			CCellIterator iter(cells, &cRange);
+			while (iter.NextExisting(c))
+			{
+				cells->GetValue(c, val);
+				if (val.fType != eNoData) 
+					countedCells++;
+			}
+		}
+	}
+
+	stack[0] = (double)countedCells;
+}
+
 void STDDEVFunction(Value *stack, int argCnt, CContainer *cells)
 {
 	VARIANCEFunction(stack, argCnt, cells);

@@ -83,6 +83,8 @@ void CPasteFunctionDialog::PostInit()
 	fList->SetSelectionMessage(new BMessage(msg_FuncChanged));
 //	fList->SetFont(be_plain_font);
 
+	fFuncDescription = (BTextView *)FindView("desc");
+
 	BMenuField *mf = dynamic_cast<BMenuField *>(FindView("group"));
 	fMenu = mf->Menu();
 	fMenu->AddItem(new BMenuItem("All", new BMessage(msg_MenuChanged)));
@@ -97,7 +99,7 @@ void CPasteFunctionDialog::PostInit()
 	fMenu->AddItem(new BMenuItem("Engineering", new BMessage(msg_MenuChanged)));
 	fMenu->AddItem(new BMenuItem("Plugins", new BMessage(msg_MenuChanged)));
 
-	fMenu->FindItem("Cell")->SetMarked(true);
+	fMenu->FindItem("All")->SetMarked(true);
 
 	FillList();
 	
@@ -200,10 +202,11 @@ void CPasteFunctionDialog::UpdateDesc()
 		
 		i = GetFunctionNr(s);
 		strcpy(s, gFuncArrayByNr[i].funcName);
-		SetText("desc", gFuncDescriptions[i]);
+		fFuncDescription->SetText(gFuncDescriptions[i]);
 	}
 	else
-		SetText("desc", "");
+		fFuncDescription->SetText("");
+		
 } /* CPasteFunctionDialog::UpdateDesc */
 
 void CPasteFunctionDialog::MessageReceived(BMessage *inMessage)

@@ -127,6 +127,7 @@ resource 'Func' (128, "Functions")
 		"AND", 65535, 81, 7,
 		"POWER", 2, 82, 4,
 		"DEC2HEX", 2, 83, 8,
-		"ATAN2", 2, 84, 4
+		"ATAN2", 2, 84, 4,
+		"COUNTA", 65535, 85, 5 //check max argument quantity !!!
 	}
 };

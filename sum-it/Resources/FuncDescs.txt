@@ -83,3 +83,4 @@ Logical And
 Number raised to a power
 Decimal to hexadecimal
 Principal arctangent of y/x
+Number of cells that are not empty also number of arguments that contain values

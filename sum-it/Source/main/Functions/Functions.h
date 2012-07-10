@@ -127,6 +127,7 @@ enum {
 	kPOWERFuncNr,
 	kDEC2HEXFuncNr,
 	kATAN2FuncNr,
+	kCOUNTAFuncNr,
 	kFunctionCount
 };
 
@@ -215,5 +216,6 @@ void ORFunction(Value *stack, int argCnt, CContainer *cells);
 void POWERFunction(Value *stack, int argCnt, CContainer *cells);
 void DEC2HEXFunction(Value *stack, int argCnt, CContainer *cells);
 void ATAN2Function(Value *stack, int argCnt, CContainer *cells);
+void COUNTAFunction(Value *stack, int argCnt, CContainer *cells);
 
 #endif
