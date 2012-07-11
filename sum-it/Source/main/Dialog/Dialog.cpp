@@ -245,10 +245,10 @@ BTextView* CDialog::AddTextView(BRect inFrame,
 		inView = fMainView;
 
 	BRect txtFrame = inFrame;
-	txtFrame.top -= 5;
-	txtFrame.bottom -= 5;
-	txtFrame.left -= 5;
-	txtFrame.right -= 5;
+	txtFrame.top += 2;
+	txtFrame.bottom -= 2;
+	txtFrame.left += 2;
+	txtFrame.right -= 2;
 
 	BTextView *ctrl = new BTextView(inFrame, inName, txtFrame, B_FOLLOW_TOP | B_FOLLOW_LEFT, B_WILL_DRAW);
 	inView->AddChild(ctrl);

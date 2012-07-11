@@ -35,15 +35,15 @@
 Resource 'DLOG' (5, "PasteFunction")
 {
 	nonmodal,
-	{0, 0, 220, 260},
+	{0, 0, 220, 275},
 	"Paste Function",
 	{
 		Popup			{ { 10, 10, 210, 26 }, "group", "Group", 0 },
 		List			{ {10, 40, 210, 150 }, "list" },
-		Box				{ { 10, 160, 210, 220 }, "Description" },
-			TextView	{ { 6, 10, 196, 50 }, "desc" },
+		Box				{ { 10, 160, 210, 235 }, "Description" },
+			TextView	{ { 3, 10, 193, 60 }, "desc" },
 		End				{},
-		Button			{ {152, 230, 210, 250}, "ok", "OK", 'OK  ' },
-		Button			{ { 84, 230, 142, 250}, "cancel", "Cancel", 'Cncl' }
+		Button			{ {152, 245, 210, 265}, "ok", "OK", 'OK  ' },
+		Button			{ { 84, 245, 142, 265}, "cancel", "Cancel", 'Cncl' }
 	}
 };
