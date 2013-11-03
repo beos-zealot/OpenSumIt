@@ -10,9 +10,9 @@ Automated building using script:
 Manual building steps:
 
 1. in "bsl" directory type 'make'   
-2. copy 'bsl' binary to '/boot/home/non-packaged/bin'
+2. copy 'bsl' binary to '/boot/home/config/non-packaged/bin'
 1. in "rez" directory type 'make'   
-2. copy 'rez' binary to '/boot/home/non-packaged/bin'
+2. copy 'rez' binary to '/boot/home/config/non-packaged/bin'
 4. in 'sum-it' directory type 'make'
 5. You have OpenSum-It binary
 
