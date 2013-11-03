@@ -251,6 +251,7 @@ bool CCellView::FindNext(bool wrap)
 			if (offset < strlen(s))
 			{
 				SetSelection(next);
+				ScrollToSelection();
 				fFOffset = offset;
 				return true;
 			}
