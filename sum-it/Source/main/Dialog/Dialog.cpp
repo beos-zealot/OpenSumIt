@@ -257,7 +257,7 @@ BTextView* CDialog::AddTextView(BRect inFrame,
 	ctrl->MakeEditable(false);
 	
 	return ctrl;
-} /* CDialog::AddStringView */
+} /* CDialog::AddTextView */
 
 BMenuField* CDialog::AddMenuField(BRect inFrame,
 	const char *inName, const char *inLabel,
@@ -271,7 +271,7 @@ BMenuField* CDialog::AddMenuField(BRect inFrame,
 	inView->AddChild(ctrl);
 	
 	return ctrl;
-} /* CDialog::AddStringView */
+} /* CDialog::AddMenuField */
 
 BListView* CDialog::AddListView(BRect inFrame,
 	const char *inName, BView *inView)
@@ -367,7 +367,7 @@ void CDialog::WindowActivated(bool active)
 	BWindow::WindowActivated(active);
 	if (active)
 		be_app->SetCursor(B_HAND_CURSOR);
-} /* CDialog::MouseMoved */
+} /* CDialog::WindowActivated */
 
 void CDialog::SetText(const char *name, const char *text)
 {
@@ -402,7 +402,7 @@ const char* CDialog::GetText(const char *name)
 	}
 	else
 		return NULL;
-} /* CDialog::SetText */
+} /* CDialog::GetText */
 
 void CDialog::SetEnabled(const char *name, bool enabled)
 {

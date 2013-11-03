@@ -596,8 +596,7 @@ void CSumItApplication::ShowHelp()
 
 		entry_ref browser;
 		if (be_roster->FindApp("text/html", &browser) || 
-				be_roster->FindApp("application/x-vnd.Haiku-WebPositive", &browser) ||
-				be_roster->FindApp("application/x-vnd.Mozilla-Firefox", &browser))
+				be_roster->FindApp("application/x-vnd.Haiku-WebPositive", &browser))
 			THROW((errNoBrowser));
 		
 		if (be_roster->IsRunning(&browser))
