@@ -59,7 +59,7 @@
 
 void CCellView::ScrollToPosition(long x, long y)
 {
-	int dv, dh;
+	int32 dv, dh;
 	float dx, dy;
 	BRect r, bounds(Bounds());
 	
