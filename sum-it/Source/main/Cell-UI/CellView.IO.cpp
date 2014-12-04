@@ -220,6 +220,20 @@ void CCellView::Write(BPositionIO& stream)
 	WriteChunk(stream, kscColStyles, size, p);
 	FREE(p);
 
+// Now styles for the rows
+	size = fContainer->GetRowStyles().Count() * sizeof(short) * 2;
+	p = MALLOC(size);
+	FailNil(p);
+	sp = (scCSElement *)p;
+	fContainer->GetRowStyles().Write(p);
+	for (int i = 0; i < fContainer->GetRowStyles().Count(); i++)
+	{
+		swap_order(sp[i].index);
+		sp[i].style = htons(GetOffsetOf(styleList, sp[i].style, usedStyles));
+	}
+	WriteChunk(stream, kscRowStyles, size, p);
+	FREE(p);
+
 // Continue with the names
 	namemap::iterator ni;
 	for (ni = fNames->begin(); ni != fNames->end(); ni++)
@@ -442,6 +456,9 @@ void CCellView::Read(BPositionIO& stream)
 	scCSElement *colStyles = NULL;
 	int colStyleCount = 0;
 
+	scCSElement *rowStyles = NULL;
+	int rowStyleCount = 0;
+
 	offset = 0;
 
 	StProgress progress(this, 1, pColorYellow, false);
@@ -558,6 +575,16 @@ void CCellView::Read(BPositionIO& stream)
 					
 					for (int i = 0; i < colStyleCount; i++)
 						str >> colStyles[i];
+					break;
+				}
+				case kscRowStyles:
+				{
+					rowStyleCount = chunk.size/(sizeof(short)*2);
+					rowStyles = (scCSElement *)MALLOC(chunk.size);
+					FailNil(rowStyles);
+					
+					for (int i = 0; i < rowStyleCount; i++)
+						str >> rowStyles[i];
 					break;
 				}
 				case kscName:
@@ -779,6 +806,16 @@ void CCellView::Read(BPositionIO& stream)
 					colStyles[i].style = styleList[colStyles[i].style];
 			}
 			fContainer->GetColumnStyles().Read(colStyleCount, colStyles);
+		}
+
+		if (rowStyles && styleList)
+		{
+			for (int i = 0; i < rowStyleCount; i++)
+			{
+				if (rowStyles[i].style >= 0 && rowStyles[i].style < styleCount)	
+					rowStyles[i].style = styleList[rowStyles[i].style];
+			}
+			fContainer->GetRowStyles().Read(rowStyleCount, rowStyles);
 		}
 	}
 	

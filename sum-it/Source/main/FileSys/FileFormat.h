@@ -96,6 +96,7 @@ enum scChunkType {
 	kscFormat = 'FM',		// Numberformat
 	kscStyle = 'ST',		// Format
 	kscColStyles = 'CS',	// Formats for columns
+	kscRowStyles = 'RS',	// Formats for rows
 	kscCellEmpty = 'CE',
 	kscCellBool = 'CB',
 	kscCellNumber = 'CN',

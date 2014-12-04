@@ -57,6 +57,7 @@ CStyleCommand::CStyleCommand(CCellView *inView, CContainer *inContainer)
 	: CCellCommand(kStyleStrID, inView, inContainer)
 	, fSavedHeights(inView->GetHeights())
 	, fSavedColumnStyles(inContainer->GetColumnStyles())
+	, fSavedRowStyles(inContainer->GetRowStyles())
 {
 	StLocker<CContainer> lock(inContainer);
 
@@ -138,6 +139,13 @@ void CStyleCommand::DoCommand()
 			ChangeStyle(cs, height);
 			fSourceContainer->SetColumnStyle(i, cs);
 		}
+	if (fRowSelected)
+		for (int i = fAffected.top; i <= fAffected.bottom; i++)
+		{
+			fSourceContainer->GetRowStyle(i, cs);
+			ChangeStyle(cs, height);
+			fSourceContainer->SetRowStyle(i, cs);
+		}
 
 	UpdateView(true, false);
 } /* CStyleCommand::DoCommand */
@@ -194,6 +202,14 @@ void CStyleCommand::UndoCommand()
 		CRunArray2 tmp = fSourceContainer->GetColumnStyles();
 		fSourceContainer->GetColumnStyles() = fSavedColumnStyles;
 		fSavedColumnStyles = tmp;
+	}
+
+	if (fRowSelected)
+	{
+		StLocker<CContainer> lock(fSourceContainer);
+		CRunArray2 tmp = fSourceContainer->GetRowStyles();
+		fSourceContainer->GetRowStyles() = fSavedRowStyles;
+		fSavedRowStyles = tmp;
 	}
 
 	UpdateView(true, false);
