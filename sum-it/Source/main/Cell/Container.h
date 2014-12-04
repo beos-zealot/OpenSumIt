@@ -138,6 +138,11 @@ public:
 	void SetColumnStyle(int, CellStyle&);
 	int GetColumnStyleNr(int);
 	void SetColumnStyleNr(int, int);
+
+	void GetRowStyle(int, CellStyle&);
+	void SetRowStyle(int, CellStyle&);
+	int GetRowStyleNr(int);
+	void SetRowStyleNr(int, int);
 	
 	void GetDefaultCellStyle(CellStyle&);
 	void SetDefaultCellStyle(CellStyle&);
@@ -159,6 +164,7 @@ public:
 /* accessors */
 	CCellView* GetOwner() const			{ return fInView; };
 	CRunArray2& GetColumnStyles()		{ return fColumnStyles; }
+	CRunArray2& GetRowStyles()			{ return fRowStyles; }
 	cell CalculatingCell() const		{ return fCalculatingCell; }
 	CNameTable *GetNameTable() const	{ return fNames; }
 	
@@ -183,6 +189,7 @@ private:
 	bool fNewNames;
 	int fDefaultCellStyle;
 	CRunArray2 fColumnStyles;
+	CRunArray2 fRowStyles;
 	cell fCalculatingCell;
 };
 

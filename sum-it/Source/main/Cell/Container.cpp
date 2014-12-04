@@ -77,7 +77,8 @@ void WarnForUnlockedContainer(int lineNr)
 const long kIndexSlotCount = 256;
 
 CContainer::CContainer(CCellView *inPane, CNameTable *inNames)
-	: fColumnStyles(kColCount, -1)
+	: fColumnStyles(kColCount, -1),
+	fRowStyles(kRowCount, -1)
 {
 	fInView = inPane;
 	fNames = inNames;
@@ -678,10 +679,13 @@ int CContainer::CollectFormats(int *formatList)
 			formatList[result++] = formatNr;
 	}
 
-	for (int i = 1; i < kColCount; i++)
+	for (int i = 1; i < kColCount + kRowCount; i++)
 	{
 		CellStyle cs;
-		GetColumnStyle(i, cs);
+		if (i < kColCount)
+			GetColumnStyle(i, cs);
+		else
+			GetRowStyle(i - kColCount + 1, cs);
 		int formatNr = cs.fFormat;
 		bool isNew = true;
 		

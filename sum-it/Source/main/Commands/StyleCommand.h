@@ -54,6 +54,7 @@ protected:
 	bool		fRowSelected, fColSelected;
 	CRunArray	fSavedHeights;
 	CRunArray2	fSavedColumnStyles;
+	CRunArray2	fSavedRowStyles;
 };
 
 class CFontStyleCommand : public CStyleCommand {

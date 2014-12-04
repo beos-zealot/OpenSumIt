@@ -80,8 +80,10 @@ int CContainer::GetCellStyleNr(const cell& inLoc)
 	
 	if ((i = fCellData.find(inLoc)) != fCellData.end())
 		return (*i).second.mStyle;
-	else
+	else if (GetColumnStyleNr(inLoc.h) != fDefaultCellStyle)
 		return GetColumnStyleNr(inLoc.h);
+	else
+		return GetRowStyleNr(inLoc.v);
 } /* GetCellStyleNr */
 
 void CContainer::SetCellStyleNr(const cell& inLoc, int inStyle)
@@ -126,6 +128,29 @@ void CContainer::SetColumnStyleNr(int colNr, int inStyle)
 	fColumnStyles.SetValue(colNr, inStyle);
 } /* SetColumnStyleNr */
 
+void CContainer::GetRowStyle(int rowNr, CellStyle& outStyle)
+{
+	outStyle = gStyleTable[GetRowStyleNr(rowNr)];
+} /* GetRowStyle */
+
+void CContainer::SetRowStyle(int rowNr, CellStyle& inStyle)
+{	CHECKLOCK
+	SetRowStyleNr(rowNr, gStyleTable.GetStyleID(inStyle));
+} /* SetRowStyle */
+
+int CContainer::GetRowStyleNr(int rowNr)
+{
+	if (fRowStyles[rowNr] >= 0)
+		return fRowStyles[rowNr];
+	else
+		return fDefaultCellStyle;
+} /* GetColumnStyleNr */
+
+void CContainer::SetRowStyleNr(int rowNr, int inStyle)
+{	CHECKLOCK
+	fRowStyles.SetValue(rowNr, inStyle);
+} /* SetColumnStyleNr */
+
 void CContainer::GetDefaultCellStyle(CellStyle& outStyle)
 {
 	outStyle = gStyleTable[fDefaultCellStyle];
@@ -157,9 +182,14 @@ int CContainer::CollectStyles(int *styleList)
 			styleList[result++] = styleNr;
 	}
 	
-	for (int i = 1; i < kColCount; i++)
+	// Go throught both column and row styles
+	for (int i = 1; i < kColCount + kRowCount; i++)
 	{
-		int styleNr = fColumnStyles[i];
+		int styleNr;
+		if (i < kColCount)
+			styleNr = fColumnStyles[i];
+		else
+			styleNr = fRowStyles[i - kColCount + 1];
 		bool isNew = true;
 
 		if (styleNr < 0) continue;
