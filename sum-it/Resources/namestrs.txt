@@ -1,9 +1,0 @@
-nameCell = Cell
-nameDate = Date/Time
-nameFin = Financial
-nameMath = Math
-nameStat = Statistical
-nameText = Text
-nameLog = Logical
-nameEng = Engeneering
-namePlug = Plugins
