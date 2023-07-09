@@ -63,6 +63,12 @@
 
 #include <support/Debug.h>
 #include <ByteOrder.h>
+#ifndef htonl
+#	define htonl(x) B_HOST_TO_BENDIAN_INT32(x)
+#	define ntohl(x) B_BENDIAN_TO_HOST_INT32(x)
+#	define htons(x) B_HOST_TO_BENDIAN_INT16(x)
+#	define ntohs(x) B_BENDIAN_TO_HOST_INT16(x)
+#endif
 
 CRunArray::CRunArray(int inMax, int inValue)
 {

@@ -203,7 +203,7 @@ void CHSVView::MouseDown(BPoint where)
 	if (knob.Contains(where))
 	{
 		BPoint oldPt(-1, -1);
-		ulong btns;
+		uint32 btns;
 		
 		do
 		{

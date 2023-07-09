@@ -94,7 +94,7 @@ void CCellView::Step(StepDirection step)
 	range r;
 	bool rangeSelection;
 	BMessage * current = Window()->CurrentMessage();
-	ulong modifiers = current->FindInt32("modifiers");
+	uint32 modifiers = current->FindInt32("modifiers");
 
 	StClipCells clip(this);
 	ClearAnts();
@@ -417,7 +417,7 @@ bool CCellView::EnterCell(const char *s, BMessage *inMessage)
 
 		SetEntering(false);
 		
-		ulong modifiers = inMessage->FindInt32("modifiers");
+		uint32 modifiers = inMessage->FindInt32("modifiers");
 		
 		switch (inMessage->FindInt32("raw_char"))
 		{
@@ -474,7 +474,7 @@ void CCellView::RejectCell()
 } /* CCellView::RejectCell */
 
 void
-CCellView::KeyDown(const char *bytes, long numOfBytes)
+CCellView::KeyDown(const char *bytes, int32 numOfBytes)
 {
 	try
 	{

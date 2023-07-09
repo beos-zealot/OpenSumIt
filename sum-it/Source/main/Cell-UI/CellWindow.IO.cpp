@@ -458,9 +458,9 @@ void CCellWindow::ReadData(BFile& file)
 		// so its not a sum-it file
 	}
 	
-	long l;
+	int32 l;
 	inStream.Seek(0, SEEK_SET);
-	inStream.Read(&l, sizeof(long));
+	inStream.Read(&l, sizeof(int32));
 	if (ntohl(l) == 'ID;P')
 	{
 		fCells->ReadSylk(inStream);

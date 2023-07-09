@@ -67,10 +67,9 @@ CPreferences *gPrefs = NULL;
 
 CPreferences::CPreferences(const char *preffilename)
 {
-	status_t err;
 	BPath settings;
 	
-	err = find_directory(B_USER_SETTINGS_DIRECTORY, &settings, true);
+	find_directory(B_USER_SETTINGS_DIRECTORY, &settings, true);
 
 	char p[1024];
 	strcpy(p, settings.Path());

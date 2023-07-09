@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	PrefsDialog.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -113,7 +113,7 @@
 // This looks like hacking, and in fact it is...
 extern int gGridColor;
 
-const ulong
+const uint32
 	msg_ChangeTarget = 'ChTr',
 	msg_DefPageSetup = 'Page';
 
@@ -153,7 +153,7 @@ void CPrefsDialog::PostInit()
 
 	BMenuField *mf = dynamic_cast<BMenuField*>(FindView("docfont"));
 	fDocFont = mf->Menu();
-	if (fDocFont) 
+	if (fDocFont)
 	{
 		for (long i = 0; i < count_font_families(); i++)
 		{
@@ -216,7 +216,7 @@ void CPrefsDialog::PostInit()
 		sprintf(t, b->Label(), fOwner->Title());
 		b->SetLabel(t);
 	}
-	
+
 	fAutoRecalc = fOwner->GetCellView()->DoesAutoRecalc();
 	fDisplayZero = fOwner->GetCellView()->DoesDisplayZero();
 	fPrGrid = fOwner->GetCellView()->PrintsGrid();
@@ -249,7 +249,7 @@ bool CPrefsDialog::OKClicked()
 	gPrefs->SetPrefInt("list separator", *GetText("listsep"));
 	gPrefs->SetPrefInt("date separator", *GetText("datesep"));
 	gPrefs->SetPrefInt("time separator", *GetText("timesep"));
-	gPrefs->SetPrefString("date order", fDMY->FindMarked()->Label());	
+	gPrefs->SetPrefString("date order", fDMY->FindMarked()->Label());
 	gPrefs->SetPrefInt("24 hours", IsOn("24 hours"));
 	gPrefs->SetPrefInt("Excel keys", IsOn("excel"));
 	gPrefs->SetPrefInt("Select Gray", IsOn("grayselect"));
@@ -288,7 +288,7 @@ bool CPrefsDialog::OKClicked()
 	msg.AddBool("disphead", IsOn("disphead"));
 	msg.AddBool("prgrid", IsOn("prgrid"));
 	msg.AddBool("prhead", IsOn("prhead"));
-	
+
 	fOwner->PostMessage(&msg, fOwner->GetCellView());
 
 	BButton *b;
@@ -305,12 +305,12 @@ bool CPrefsDialog::OKClicked()
 bool CPrefsDialog::CancelClicked()
 {
 	char s[256];
-	
+
 	ResetFontSheet();
-	
+
 	SetOn("autorecalc", fAutoRecalc);
 	SetOn("displayzero", fDisplayZero);
-	
+
 	s[1] = 0;
 	s[0] = gDecimalPoint;
 	SetText("decsep", s);
@@ -329,7 +329,7 @@ bool CPrefsDialog::CancelClicked()
 	SetOn(gPrefs->GetPrefInt("start with new", 1) ? "donew" : "doopen", B_CONTROL_ON);
 	SetOn("formula starts with equal", gPrefs->GetPrefInt("formula starts with equal", 0));
 	SetOn("dark gridlines", gPrefs->GetPrefInt("dark gridlines"));
-	
+
 	SetText("c_symbol", gPrefs->GetPrefString("c_symbol", "$"));
 	SetOn(gPrefs->GetPrefInt("c_before", 1) ? "c_before" : "c_after", B_CONTROL_ON);
 	SetOn("c_neg_par", gPrefs->GetPrefInt("c_neg_par", 1) ? B_CONTROL_ON : B_CONTROL_OFF);
@@ -338,18 +338,18 @@ bool CPrefsDialog::CancelClicked()
 
 	if (fPageSetup) FREE(fPageSetup);
 	fPageSetup = (char *)Hex2Bin(gPrefs->GetPrefString("default page setup", ""), fPageSetupSize);
-	
+
 	SetOn("prgrid", fPrGrid);
 	SetOn("prhead", fPrBorders);
 	SetOn("dispgrid", fShGrid);
 	SetOn("disphead", fShBorders);
-	
+
 	BButton *b;
 	b = (BButton *)FindView("ok");
 	b->SetEnabled(false);
 	b = (BButton *)FindView("cancel");
 	b->SetEnabled(false);
-	
+
 	return false;
 } /* CPrefsDialog::CancelClicked */
 
@@ -359,7 +359,7 @@ void CPrefsDialog::UpdateFields()
 		GrabDocFont();
 	else
 		GrabNewFont();
-	
+
 	BButton *b;
 	b = (BButton *)FindView("ok");
 	b->SetEnabled(true);
@@ -374,9 +374,9 @@ CPrefsDialog* CPrefsDialog::Construct(CCellWindow *owner)
 	char name[256];
 	window_type type;
 	int flags;
-	
+
 	InitValues(0, buf, frame, name, type, flags, NULL);
-	
+
 	CPrefsDialog* result = new CPrefsDialog(frame, name, owner, type, flags);
 	if (result)
 	{
@@ -392,7 +392,7 @@ CPrefsDialog* CPrefsDialog::Construct(CCellWindow *owner)
 			result = NULL;
 		}
 	}
-	
+
 	return result;
 } /* CPrefsDialog::Construct */
 
@@ -407,7 +407,7 @@ void CPrefsDialog::MessageReceived(BMessage *msg)
 		case msg_DefPageSetup:
 			GetDefPageSetup();
 			break;
-		
+
 		default:
 			CDialog::MessageReceived(msg);
 			break;
@@ -417,7 +417,7 @@ void CPrefsDialog::MessageReceived(BMessage *msg)
 void CPrefsDialog::GrabDocFont()
 {
 	BMenuItem *item;
-	
+
 	item = fDocFont->FindMarked();
 	if (item) strcpy(fDocFontFamily, item->Label());
 	fDocFontSize = atof(GetText("docsize"));
@@ -429,7 +429,7 @@ void CPrefsDialog::GrabDocFont()
 void CPrefsDialog::GrabNewFont()
 {
 	BMenuItem *item;
-	
+
 	item = fDocFont->FindMarked();
 	if (item) strcpy(fNewFontFamily, item->Label());
 	fNewFontSize = atof(GetText("docsize"));
@@ -442,7 +442,7 @@ void CPrefsDialog::ResetFontSheet()
 {
 	char *ff, *bf;
 	float fs, bs;
-	
+
 	if (fNewOrCur->IndexOf(fNewOrCur->FindMarked()) == 0)
 	{
 		ff = fNewFontFamily;	bf = fNewBFontFamily;
@@ -466,16 +466,16 @@ void CPrefsDialog::ResetFontSheet()
 void CPrefsDialog::GetDefPageSetup()
 {
 	BPrintJob prJob("a page setup job");
-	
+
 	if (fPageSetup)
 	{
 		BMessage *s = new BMessage;
 		if (s && s->Unflatten(fPageSetup) == B_NO_ERROR)
 			prJob.SetSettings(s);
 	}
-	
+
 	int result = prJob.ConfigPage();
-	
+
 	if (result == B_NO_ERROR)
 	{
 		BMessage * s(prJob.Settings());
@@ -486,7 +486,7 @@ void CPrefsDialog::GetDefPageSetup()
 		FailNil(fPageSetup);
 		result = s->Flatten(fPageSetup, fPageSetupSize);
 		FailOSErr(result, "error flattening (%d)");
-		
+
 		UpdateFields();
 	}
 } /* CPrefsDialog::GetDefPageSetup */

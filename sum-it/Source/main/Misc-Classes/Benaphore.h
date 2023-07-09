@@ -55,7 +55,7 @@ public:
 
 private:
 	sem_id fSemID;
-	long fCount;
+	int32 fCount;
 };
 
 class StBenaphore {

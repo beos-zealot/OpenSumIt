@@ -40,7 +40,7 @@
 
 #include "Dialog.h"
 
-const ulong
+const uint32
 	msg_AnimateCell = 'ACel',
 	msg_AnimateGraphs = 'AGrf';
 

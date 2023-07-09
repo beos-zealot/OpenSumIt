@@ -44,7 +44,7 @@
 #include "KeyFilter.h"
 #endif
 
-const ulong
+const uint32
 	msg_OK = 'OK  ',
 	msg_Cancel = 'Cncl',
 	msg_ManualChange = 'MnCh';
@@ -115,7 +115,7 @@ void CColorPicker::Connect(BMessage *msg, BHandler *caller)
 	fMessage = *msg;
 
 	rgb_color *c;
-	long l;
+	ssize_t l;
 	
 	if (msg && msg->FindData("color", 'RGBC', (const void **)&c, &l) == B_NO_ERROR)
 	{
@@ -135,7 +135,7 @@ void CColorPicker::Connect(BMessage *msg, BHandler *caller)
 void CColorPicker::MessageReceived(BMessage *msg)
 {
 	roSColor *c;
-	long l;
+	ssize_t l;
 	
 	if (msg->WasDropped() && msg->FindData("roColour", 'roCr', (const void **)&c, &l) == B_NO_ERROR)
 	{

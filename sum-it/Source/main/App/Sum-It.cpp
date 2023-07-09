@@ -467,8 +467,8 @@ CSumItApplication::MessageReceived(
 void CSumItApplication::RefsReceived(
 	BMessage	*inMessage)
 {
-	ulong 	type;
-	long	count;
+	type_code	type;
+	int32	count;
 	inMessage->GetInfo("refs", &type, &count);
 	for (long i = --count; i >= 0; i--)
 	{

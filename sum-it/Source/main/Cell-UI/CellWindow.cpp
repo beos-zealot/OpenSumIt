@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	CellWindow.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -152,11 +152,11 @@
 #include <Entry.h>
 
 BList 	CCellWindow::sWindowList;
-long	CCellWindow::sUntitledCount = 1;
+int32	CCellWindow::sUntitledCount = 1;
 
 class CCellWindowMessageFilter : public BMessageFilter {
 public:
-		CCellWindowMessageFilter(ulong inMessage);
+		CCellWindowMessageFilter(uint32 inMessage);
 
 virtual filter_result Filter(BMessage *message, BHandler **target);
 };
@@ -194,13 +194,13 @@ CCellWindow::CCellWindow()
 	try
 	{
 		Lock();
-	
+
 		char title[32];
 		GetUntitledName(title);
 		SetTitle(title);
 
 		InitWindow();
-	
+
 		Unlock();
 		Show() ;
 	}
@@ -225,7 +225,7 @@ CCellWindow::CCellWindow(const entry_ref& inRef)
 	Lock();
 
 	InitWindow();
-		
+
 	try
 	{
 		SetTitle(inRef.name);
@@ -248,19 +248,19 @@ CCellWindow::~CCellWindow()
 
 	if (fSavePanel)
 		delete fSavePanel;
-	
+
 	for (int i = 0; i < fDialogs.CountItems(); i++)
 		((BWindow *)fDialogs.ItemAt(i))->PostMessage(B_QUIT_REQUESTED);
-	
+
 	for (int i = 0; i < fGraphs.CountItems(); i++)
 		((BWindow *)fGraphs.ItemAt(i))->PostMessage(B_QUIT_REQUESTED);
-	
+
 	while (fCommands.Top())
 		delete (CCommand *)fCommands.Pop();
-	
+
 	while (fUndoneCommands.Top())
 		delete (CCommand *)fUndoneCommands.Pop();
-	
+
 	be_app->PostMessage(msg_WindowRemoved);
 }
 
@@ -284,10 +284,10 @@ void CCellWindow::InitWindow()
 	editRect.top = mbarBottom + 1;
 	editRect.bottom = ceil(editRect.top + fi.ascent + fi.descent + fi.leading + 3);
 	float editBoxBottom = max_c(editRect.bottom, mbarBottom + 15);
-	
+
 	C3DBoxje *b = new C3DBoxje(editRect);
 	AddChild(b);
-	
+
 	editRect.OffsetTo(0.0, 0.0);
 	editRect.InsetBy(1.0, 1.0);
 	editRect.top += 1.0;
@@ -309,7 +309,7 @@ void CCellWindow::InitWindow()
 	BuildButton(r, "reject", msg_TextCancelled, 401, 403);
 	r.OffsetBy(16.0, 0);
 	BuildButton(r, "sum", msg_SumButton, 404, 405);
-	
+
 	BRect cellsRect(Bounds());
 	cellsRect.top += editBoxBottom + 1;
 	cellsRect.right -= B_V_SCROLL_BAR_WIDTH;
@@ -327,13 +327,13 @@ void CCellWindow::InitWindow()
 
 	r.OffsetBy(102.0, 0);
 	AddChild(new CProgressView(fCells, r));
-	
+
 	r.left = r.right;
 	r.right = Bounds().right - B_V_SCROLL_BAR_WIDTH + 1.0;
 	CCellScrollBar *hBar = new CCellScrollBar(r, "hScroll",
 		fCells, 0, kColCount, B_HORIZONTAL);
 	AddChild(hBar);
-	
+
 	r = Bounds();
 	r.top += editBoxBottom + 1;
 	r.left = r.right - B_V_SCROLL_BAR_WIDTH + 1.0;
@@ -342,15 +342,15 @@ void CCellWindow::InitWindow()
 	CCellScrollBar *vBar = new CCellScrollBar(r, "vScroll",
 		fCells, 0, kRowCount, B_VERTICAL);
 	AddChild(vBar);
-	
+
 	fCells->AdjustScrollBars();
 
 	BMenuBar *mbar = BuildMenu(mbarRect, 1);
 	FailNil(mbar);
 	AddChild(mbar);
-	
+
 	mbar->SetTargetForItems(this);
-	
+
 	fFileMenu = mbar->SubmenuAt(0);
 	fEditMenu = mbar->SubmenuAt(1);
 	fFormatMenu = mbar->SubmenuAt(2);
@@ -358,16 +358,17 @@ void CCellWindow::InitWindow()
 	fGraphMenu = mbar->SubmenuAt(4);
 	fWindowMenu = mbar->SubmenuAt(5);
 	fHelpMenu = mbar->SubmenuAt(6);
-	
+
 	fFontMenu = fFormatMenu->SubmenuAt(0);
 	fStyleMenu = fFormatMenu->SubmenuAt(1);
 	fSizeMenu = fFormatMenu->SubmenuAt(2);
 	fTextColorMenu = fFormatMenu->SubmenuAt(3);
 	fCellColorMenu = fFormatMenu->SubmenuAt(4);
 
-	fFileMenu->FindItem(msg_NewWindow)->SetTarget(be_app);
-	fFileMenu->FindItem(msg_OpenWindow)->SetTarget(be_app);
-	
+	BMenuItem *item;
+	item = fFileMenu->FindItem(msg_NewWindow); if (item != NULL) item->SetTarget(be_app);
+	item = fFileMenu->FindItem(msg_OpenWindow); if (item != NULL) item->SetTarget(be_app);
+
 	fUndoMenuItem = fEditMenu->ItemAt(0);
 	fUndoMenuItem->SetEnabled(FALSE);
 	fRedoMenuItem = fEditMenu->ItemAt(1);
@@ -382,20 +383,20 @@ void CCellWindow::InitWindow()
 	}
 	fFontMenu->SetRadioMode(TRUE);
 	fFontMenu->SetTargetForItems(fCells);
-	
+
 	fSizeMenu->SetRadioMode(TRUE);
 	fSizeMenu->SetTargetForItems(fCells);
-	
+
 	fTextColorMenu->SetTargetForItems(fCells);
 	fTextColorMenu->SetRadioMode(TRUE);
-	
+
 	fCellColorMenu->SetTargetForItems(fCells);
 	fCellColorMenu->SetRadioMode(TRUE);
-	
+
 	fFormatMenu->SetTargetForItems(fCells);
-	
+
 	fDataMenu->SetTargetForItems(fCells);
-	
+
 	fGraphMenu->SetTargetForItems(fCells);
 
 	fWindowMenu->SetTargetForItems(fCells);
@@ -407,7 +408,7 @@ void CCellWindow::InitWindow()
 	fEditBox->AddFilter(new CCellWindowMessageFilter(B_KEY_DOWN));
 	fEditBox->AddFilter(new CCellWindowMessageFilter(B_MOUSE_DOWN));
 	fEditBox->SetCellView(fCells);
-	
+
 	fCells->MakeFocus();
 
 	BMessage *msg = new BMessage(msg_NavigateKey);
@@ -429,7 +430,7 @@ void CCellWindow::InitWindow()
 	msg->AddInt32("raw_char", B_RIGHT_ARROW);
 	msg->AddInt32("modifiers", B_COMMAND_KEY);
 	AddShortcut(B_RIGHT_ARROW, B_COMMAND_KEY, msg, fCells);
-	
+
 	msg = new BMessage(msg_NavigateKey);
 	msg->AddInt32("raw_char", B_UP_ARROW);
 	msg->AddInt32("modifiers", B_COMMAND_KEY | B_SHIFT_KEY);
@@ -449,19 +450,19 @@ void CCellWindow::InitWindow()
 	msg->AddInt32("raw_char", B_RIGHT_ARROW);
 	msg->AddInt32("modifiers", B_COMMAND_KEY | B_SHIFT_KEY);
 	AddShortcut(B_RIGHT_ARROW, B_COMMAND_KEY | B_SHIFT_KEY, msg, fCells);
-	
+
 	SetSizeLimits(300.0, 10000.0, 100.0, 100000.0);
 }
 
 void CCellWindow::BuildButton(BRect inFrame, const char *name,
-	ulong message, int normalID, int pushedID)
+	uint32 message, int normalID, int pushedID)
 {
 	BRect b(0.0, 0.0, 15.0, 15.0);
 	BBitmap *bmp = new BBitmap(b, B_COLOR_8_BIT);
 	BView *tmp = new BView(b, NULL, 0, 0);
-	
+
 	AddChild(tmp);
-	
+
 	const void * data = gResourceManager.LoadMiniIcon(normalID);
 	if (!data) THROW((errResNotFound));
 	bmp->SetBits(data, 16 * 16, 0, B_COLOR_8_BIT);
@@ -479,9 +480,9 @@ void CCellWindow::BuildButton(BRect inFrame, const char *name,
 	tmp->BeginPicture(new BPicture);
 	tmp->DrawBitmap(bmp);
 	off = tmp->EndPicture();
-	
+
 	AddChild(new BPictureButton(inFrame, name, on, off, new BMessage(message)));
-	
+
 	RemoveChild(tmp);
 	delete tmp;
 } /* CCellWindow::BuildButton */
@@ -491,26 +492,26 @@ CCellWindow::QuitRequested()
 {
 	bool result = true;
 	fWaitForSave = false;
-	
+
 	if (fDirty)
 	{
 		char title[256];
 		sprintf(title, GetMessage(msgSaveChanges), Title());
-		
+
 		MInfoAlert alert(title,
 			GetMessage(msgSave),
 			GetMessage(msgCancel),
 			GetMessage(msgDontSave));
-		
+
 		switch (alert.Go())
 		{
 			case 3:
 				break;
-				
+
 			case 2:
 				result = FALSE;
 				break;
-				
+
 			default:
 				if (fEntry)
 					Save();
@@ -523,7 +524,7 @@ CCellWindow::QuitRequested()
 				break;
 		}
 	}
-	 
+
 	return (result);
 }
 
@@ -534,12 +535,12 @@ BRect CCellWindow::GetFrameRect()
 		BScreen screen;
 		frame = screen.Frame();
 	}
-	
+
 	r.right = 0.75 * frame.Width();
 	r.bottom = 0.75 * frame.Height();
 	r.left = frame.left + 14;
 	r.top = frame.top + 27;
-	
+
 	long	numWindows = sWindowList.CountItems();
 	long t = (long)std::min(frame.Width() - 14, frame.Height() - 27) / 60;
 	float offset = (numWindows % t) * 15;
@@ -552,14 +553,14 @@ BRect CCellWindow::GetFrameRect()
 CCellWindow* CCellWindow::FindWindow(const entry_ref& inRef)
 {
 	CCellWindow *window = NULL;
-	for ( long i = 0; 
-		  (window = (CCellWindow *)sWindowList.ItemAt(i)) != NULL; 
+	for ( long i = 0;
+		  (window = (CCellWindow *)sWindowList.ItemAt(i)) != NULL;
 		  i++)
 	{
 		if (window->fEntry && inRef == *window->fEntry)
 			return (window);
 	}
-	
+
 	return (NULL);
 } /* CCellWindow::FindWindow */
 
@@ -575,10 +576,10 @@ void CCellWindow::WindowActivated(bool active)
 	BWindow::WindowActivated(active);
 
 	SetPulseRate(50000);
-	
+
 	if (active && fWindowModal)
 		fWindowModal->Activate(true);
-	
+
 	if (active)
 	{
 		sWindowList.RemoveItem(this);
@@ -594,7 +595,7 @@ void * CCellWindow::GetCellFormula( const cell& cell )
 
 //#pragma mark -
 
-CCellWindowMessageFilter::CCellWindowMessageFilter(ulong inMessage)
+CCellWindowMessageFilter::CCellWindowMessageFilter(uint32 inMessage)
 	: BMessageFilter(B_ANY_DELIVERY, B_ANY_SOURCE, inMessage)
 {
 } /* CCellWindowMessageFilter::CCellWindowMessageFilter */
@@ -608,15 +609,15 @@ filter_result CCellWindowMessageFilter::Filter(
 
 	filter_result result = B_DISPATCH_MESSAGE;
 
-	long key, modifiers;
+	int32 key, modifiers;
 	message->FindInt32("raw_char", &key);
 	message->FindInt32("modifiers", &modifiers);
 	modifiers &= ~B_NUM_LOCK;
-	
+
 	if (editBox != NULL)
 	{
 		window = (CCellWindow *)editBox->Window();
-		
+
 		if (message->what == B_MOUSE_DOWN)
 			window->GetCellView()->SetEntering(true);
 
@@ -627,7 +628,7 @@ filter_result CCellWindowMessageFilter::Filter(
 				message->what = msg_TextEntered;
 				*target = window;
 				break;
-			
+
 			case B_ESCAPE:
 				message->what = msg_TextCancelled;
 				*target = window;
@@ -649,7 +650,7 @@ filter_result CCellWindowMessageFilter::Filter(
 	{
 		if (!window)
 			window = (CCellWindow *)cellView->Window();
-		
+
 		switch (key)
 		{
 			case B_UP_ARROW:

@@ -59,7 +59,7 @@ CParser::CParser(CContainer *inContainer,
 	, mDateSep(inDateSep)
 	, mTimeSep(inTimeSep)
 {
-	memset( mToken, sizeof(mToken), 0 ) ;
+	memset( mToken, 0, sizeof(mToken) ) ;
 } // CParser::CParser
 
 CParser::~CParser()

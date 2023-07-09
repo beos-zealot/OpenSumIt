@@ -367,7 +367,7 @@ void CGraphic::DrawBorders()
 void CGraphic::TrackResize(BPoint where)
 {
 	BPoint loc = where, oldSize, newSize;
-	ulong btns;
+	uint32 btns;
 	float w, h;
 	
 	oldSize.x = w = fWidth;
@@ -470,7 +470,7 @@ void CGraphic::MoveTo(float x, float y)
 void CGraphic::TrackDrag(BPoint where)
 {
 	BPoint loc = where, ftl, d;
-	ulong btns;
+	uint32 btns;
 	cell savedAnchor;
 	BRect savedSize;
 

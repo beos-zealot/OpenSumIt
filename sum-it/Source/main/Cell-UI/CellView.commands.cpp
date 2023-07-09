@@ -340,7 +340,7 @@ void CCellView::MessageReceived(BMessage *inMessage)
 			
 			case msg_TextColorSelected:
 			{
-				long l;
+				ssize_t l;
 				rgb_color *newColor;
 				inMessage->FindData("color", B_RGB_COLOR_TYPE, (const void **)&newColor, &l);
 				wind->RegisterCommand(new CTextColorStyleCommand(this, fContainer, *newColor));
@@ -362,7 +362,7 @@ void CCellView::MessageReceived(BMessage *inMessage)
 			
 			case msg_CellColorSelected:
 			{
-				long l;
+				ssize_t l;
 				rgb_color *newColor;
 				inMessage->FindData("color", B_RGB_COLOR_TYPE, (const void **)&newColor, &l);
 				wind->RegisterCommand(new CLowColorStyleCommand(this, fContainer, *newColor));
@@ -492,7 +492,7 @@ void CCellView::MessageReceived(BMessage *inMessage)
 			case msg_GoTo:
 			{
 				const range *r;
-				long l;
+				ssize_t l;
 				
 				if (inMessage->FindData("range", 'data', (const void **)&r, &l) != B_NO_ERROR)
 				{
@@ -568,7 +568,7 @@ void CCellView::MessageReceived(BMessage *inMessage)
 			
 			case msg_AddName:
 			{
-				long l;
+				ssize_t l;
 				range *r;
 				FailOSErr(inMessage->FindData("range", 'rang', (const void **)&r, &l),
 					errMessageMissing);

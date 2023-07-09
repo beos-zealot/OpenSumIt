@@ -428,7 +428,7 @@ void CGraphPlugIn::GetOptionsTemplate(BMallocIO& templ)
 
 void CGraphPlugIn::MouseDown(BPoint where)
 {
-	long clicks;
+	int32 clicks;
 	fParent->Window()->CurrentMessage()->FindInt32("clicks", &clicks);
 	if (clicks == 2)
 		DisplayOptions();

@@ -205,7 +205,7 @@ bool IsOptionalClick(BMessage *msg)
 {
 	try
 	{
-		long buttons, modifiers;
+		int32 buttons, modifiers;
 		FailOSErr(msg->FindInt32("buttons", &buttons), errMessageMissing);
 		FailOSErr(msg->FindInt32("modifiers", &modifiers), errMessageMissing);
 		return buttons & B_SECONDARY_MOUSE_BUTTON || modifiers & B_CONTROL_KEY;
@@ -338,7 +338,7 @@ static BMenu* GetMenu(int id)
 
 	BMenu *menu = new BMenu(s);
 	char type, key;
-	long l;
+	int32 l;
 	short modifiers;
 	rgb_color color = { 255, 255, 255, 255 };
 	

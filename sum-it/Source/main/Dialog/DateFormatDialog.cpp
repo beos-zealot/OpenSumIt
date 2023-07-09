@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	DateFormatDialog.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -74,10 +74,10 @@ CDateFormatDialog::CDateFormatDialog(BRect frame, const char *name, CCellWindow 
 {
 } /* CDateFormatDialog::CDateFormatDialog */
 
-void CDateFormatDialog::PostInit(ulong oldFormat)
+void CDateFormatDialog::PostInit(uint32 oldFormat)
 {
 	fView = fOwner->GetCellView();
-	
+
 	SetOn("day", oldFormat & 1);
 	switch (oldFormat >> 1 & 3)
 	{
@@ -97,7 +97,7 @@ void CDateFormatDialog::PostInit(ulong oldFormat)
 	SetOn("second", oldFormat >> 7 & 1);
 
 	UpdateFields();
-	
+
 	Show();
 } /* CDateFormatDialog::PostInit */
 
@@ -108,7 +108,7 @@ void CDateFormatDialog::UpdateFields()
 
 	time(&t);
 	gFormatTable.FormatValue(BuildBitField(), Value(t), s);
-	
+
 	SetText("demo", s);
 
 	SetEnabled("m_nr", IsOn("month"));
@@ -127,16 +127,16 @@ bool CDateFormatDialog::OKClicked()
 	return true;
 } /* CDateFormatDialog::OKClicked */
 
-CDateFormatDialog* CDateFormatDialog::Construct(CCellWindow *owner, ulong oldFormat)
+CDateFormatDialog* CDateFormatDialog::Construct(CCellWindow *owner, uint32 oldFormat)
 {
 	BMallocIO buf;
 	BRect frame;
 	char name[256];
 	window_type type;
 	int flags;
-	
+
 	InitValues(2, buf, frame, name, type, flags, owner);
-	
+
 	CDateFormatDialog* result = new CDateFormatDialog(frame, name, owner, type, flags);
 	if (result)
 	{
@@ -152,14 +152,14 @@ CDateFormatDialog* CDateFormatDialog::Construct(CCellWindow *owner, ulong oldFor
 			result = NULL;
 		}
 	}
-	
+
 	return result;
 } /* CDateFormatDialog::Construct */
 
 long CDateFormatDialog::BuildBitField()
 {
 	long bf = 0;
-	
+
 	if (IsOn("day"))				bf |= 1;
 	if (IsOn("month"))
 	{
@@ -175,6 +175,6 @@ long CDateFormatDialog::BuildBitField()
 	if (IsOn("hour"))				bf |= 1 << 5;
 	if (IsOn("minute"))			bf |= 1 << 6;
 	if (IsOn("second"))			bf |= 1 << 7;
-	
+
 	return bf;
 } /* CDateFormatDialog::BuildBitField */

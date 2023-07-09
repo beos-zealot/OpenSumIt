@@ -55,7 +55,7 @@
 #include "Range.h"
 #endif
 
-#include <cmath>
+#include <math.h>
 #include <ctime>
 
 struct CellData;

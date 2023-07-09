@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	FontMetrics.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -78,7 +78,7 @@ CFontMetrics::CFontMetrics(const char *inFamily, const char *inStyle,
 	fFont.SetFamilyAndStyle(inFamily, inStyle);
 	fFont.GetFamilyAndStyle(&fFamily, &fStyle);
 	fFont.SetSize(fSize = inFontSize);
-	
+
 	if (strcmp(fFamily, "<unknown family>") == 0)
 	{
 		fFont.SetFamilyAndStyle(
@@ -120,7 +120,7 @@ float CFontMetrics::operator[] (int inChar) const
 		ASSERT(false);
 		return be_plain_font->StringWidth(s);
 	}
-	
+
 	return fFontStyle->CharWidth(s);
 } /* CFontMetrics::operator[] */
 
@@ -128,7 +128,7 @@ float CFontMetrics::StringWidth(const char *inString) const
 {
 	int i = 0;
 	float result = 0;
-	
+
 	while (inString[i])
 	{
 		result += fFontStyle->CharWidth(inString + i);
@@ -154,52 +154,52 @@ bool CFontMetrics::operator==(const CFontMetrics& inOther)
 } /* CFontMetrics::operator== */
 
 //////////////////////////////////////////////////////////
-// 
+//
 // FontSizeTable
 //
 CFontSizeTable::CFontSizeTable()
 {
 } /* CFontSizeTable::CFontSizeTable */
 
-ulong CFontSizeTable::GetFontID(const char *fontName, const char *fontStyle,
+uint32 CFontSizeTable::GetFontID(const char *fontName, const char *fontStyle,
 		float fontSize, rgb_color fontColor)
 {
 	StLocker<CFontSizeTable> lock(this);
 	std::vector<CFontMetrics>::iterator i;
 	CFontMetrics ns(fontName, fontStyle, fontSize, fontColor);
-	
+
 	for (i = fFonts.begin(); i != fFonts.end(); i++)
 	{
 		if ((*i) == ns)
 			return i - fFonts.begin();
 	}
-	
+
 	fFonts.push_back(ns);
 	return fFonts.size() - 1;
 } /* CFontSizeTable::GetFontID */
 
-void CFontSizeTable::SetFontID(BView *view, ulong formatID,
+void CFontSizeTable::SetFontID(BView *view, uint32 formatID,
 	CFontMetrics **outMetrics)
 {
 	BAutolock lock(this);
-	
+
 	if (formatID < 0 || formatID >= fFonts.size())
 	{
 		ASSERT(false);
 		formatID = 0;
 	}
-	
+
 	fFonts[formatID].SetFontSizeColor(view);
 	if (outMetrics)
 		*outMetrics = &fFonts[formatID];
 } /* CFontSizeTable::SetFontID */
 
-void CFontSizeTable::GetFontInfo(ulong formatID,
+void CFontSizeTable::GetFontInfo(uint32 formatID,
 	font_family *fontName, font_style *fontStyle, float *fontSize,
 	rgb_color *fontColor)
 {
 	CFontMetrics *fm;
-	
+
 	BAutolock lock(this);
 	fm = &fFonts[formatID];
 	fm->fFont.GetFamilyAndStyle(fontName, fontStyle);

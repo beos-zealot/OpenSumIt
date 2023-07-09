@@ -183,7 +183,7 @@ void CColorSlider::MouseDown(BPoint where)
 	if (knob.Contains(where))
 	{
 		BPoint oldPt(-1, -1);
-		ulong btns;
+		uint32 btns;
 		BMessage msg(msg_SliderChanged);
 		msg.AddFloat("value", fValue);
 		msg.AddPointer("sender", this);

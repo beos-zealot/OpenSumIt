@@ -311,7 +311,7 @@ static void FormatFixed(char *d, int exp10, int digits,
 
 bool CFormatter::operator==(const CFormatter& inOther) const
 {
-	return fFormatID == fFormatID &&
+	return fFormatID == inOther.fFormatID &&
 		fDigits == inOther.fDigits &&
 		fCommas == inOther.fCommas;
 } // CFormatter::operator==

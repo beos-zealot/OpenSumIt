@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	MyResources.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -65,10 +65,10 @@
 typedef struct {
 	void *resData;
 #if DEBUG
-	ulong marker;
+	uint32 marker;
 #endif
-	ulong type;
-	ulong resLength;
+	uint32 type;
+	uint32 resLength;
 	char* name;
 	int id;
 } ResInfo;
@@ -88,19 +88,19 @@ void OpenResFile(const char *name)
 //	BFile *f = new BFile();
 	BFile f ;
 //	FailNil(f);
-	
+
 	status_t err;
-	
+
 	err = f.SetTo(name, B_READ_ONLY);
 	if (err)
 		THROW((errOpeningResFile, name));
-	
+
 	BResources *r = new BResources();
 	FailNil(r);
 	err = r->SetTo(&f);
 	if (err)
 		THROW((errOpeningResFile, name));
-	
+
 	gResFile = r;
 } /* OpenResFile */
 
@@ -116,14 +116,14 @@ void CloseResFile(int /*id*/)
 	gResFile = NULL;
 }
 
-void *GetResource(ulong type, int id)
+void *GetResource(uint32 type, int id)
 {
 	int i;
-	
+
 	for (i = 0; i < kMaxRes && gResTable[i].type != 0; i++)
 		if (gResTable[i].type == type && gResTable[i].id == id)
 			return &gResTable[i].resData;	// geef 'Handle' terug
-	
+
 	if (i < kMaxRes)
 	{
 		gResTable[i].resData =

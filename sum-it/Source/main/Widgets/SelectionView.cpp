@@ -122,6 +122,7 @@ CSelectionView::Draw(BRect /*updateRect*/)
 	SetHighColor(kB_GrayTable[0]);
 	
 	frame.InsetBy(1.0, 1.0);
+	SetFontSize(9);
 	FillRect3D(this, frame, FALSE, fWindowIsActive, fText);
 }
 
@@ -151,7 +152,7 @@ void CSelectionView::WindowActivated(bool active)
 
 void CSelectionView::MouseDown(BPoint where)
 {
-	ulong btns;
+	uint32 btns;
 	BPoint cur;
 	
 	GetMouse(&cur, &btns);

@@ -3,12 +3,12 @@ DEBUG := 1
 
 BEOS_VERS   :=r$(shell uname -r)
 
-MACHINE=$(shell uname -m)
-ifeq ($(MACHINE), BePC)
+# MACHINE=$(shell uname -m)
+# ifeq ($(MACHINE), BePC)
 	CPU     := x86
-else
-	CPU     := ppc
-endif
+# else
+# 	CPU     := ppc
+# endif
 
 ifeq ($(DEBUG), 1)
 	DBG		:= -gdwarf-2

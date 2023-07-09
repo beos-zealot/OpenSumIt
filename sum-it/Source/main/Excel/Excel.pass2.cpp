@@ -303,7 +303,7 @@ void CExcel5Filter::HandleXLRecordForPass2(int code, int len)
 
 				fContainer->SetCellFormula(c, form.DetachString());
 			}
-			catch (CErr e) {
+			catch (CErr &e) {
 				puts(e);
 //				e.DoError();
 			}
