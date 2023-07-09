@@ -196,14 +196,14 @@ public:
 	void SetSelection(cell c)				{ SetSelection(range(c.h, c.v, c.h, c.v)); };
 	bool PointIsInSelection(BPoint point);
 
-	void KeyDown(const char *bytes, long numBytes);
+	void KeyDown(const char *bytes, int32 numBytes);
 	void MessageReceived(BMessage *theMessage);
 
 	void MenusBeginning();
 
 // Drag & Drop
 	void StartDrag(BPoint where, bool copy);
-	void MouseMoved(BPoint point, ulong transit, const BMessage *message);
+	void MouseMoved(BPoint point, uint32 transit, const BMessage *message);
 	void HandleDrop(BMessage *inMessage);
 
 // IO

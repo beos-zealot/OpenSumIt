@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	CalculateJob.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -118,7 +118,7 @@
 
 /* Implementatie */
 
-const ulong kBufferCount = 500;
+const uint32 kBufferCount = 500;
 
 CCalculateJob::CCalculateJob(BView *inView, CContainer *inContainer)
 	: MThread("CalculateJob")
@@ -145,16 +145,16 @@ long CCalculateJob::Execute() throw()
 	cell *graph = NULL;
 
 	graphSize = fContainer->GetCellCount();
-	
+
 	try
 	{
 		if (graphSize)
 		{
 			cellmap::iterator iter;
-				
+
 			graph = (cell *)MALLOC(graphSize * sizeof(cell));
 			FailNil(graph);
-		
+
 			StWriteLock lock(fContainer);
 			for (iter = fContainer->fCellData.begin(); iter != fContainer->fCellData.end(); iter++)
 			{
@@ -167,10 +167,10 @@ long CCalculateJob::Execute() throw()
 				else
 					graphSize--;
 			}
-		
+
 			StProgress progress(fContainer->fInView,
 				graphSize, pColorRed, true);
-		
+
 // Bezoek alle cellen die nog niet berekend zijn
 			for (indx = 0; indx < graphSize; indx++)
 			{
@@ -192,24 +192,24 @@ long CCalculateJob::Execute() throw()
 					}
 			}
 
-			long l = 0;
+			status_t l = 0;
 			write_port(fPortID, 'quit', &l, 4);
 //			write_port(fPortID, 'quit', &l, 4);
 			wait_for_thread(fCalcThread1->Thread(), &l);
 //			wait_for_thread(fCalcThread2->Thread(), &l);
-		
+
 // ruim de graaf op
 			FREE(graph);
 		}
 	}
-		
+
 	catch (CErr& err)
 	{
 		CATCHED;
-	
+
 		fCalcThread1->Cancel();
 //		fCalcThread2->Cancel();
-		long l;
+		status_t l;
 		wait_for_thread(fCalcThread1->Thread(), &l);
 //		wait_for_thread(fCalcThread2->Thread(), &l);
 
@@ -237,7 +237,7 @@ void CCalculateJob::Visit(cell inCell, StProgress *inProgress)
 
 	{
 		StLocker<CContainer> lock(fContainer);
-		
+
 		i = fContainer->fCellData.find(inCell);
 		if (i == fContainer->fCellData.end())
 			return;
@@ -253,15 +253,15 @@ void CCalculateJob::Visit(cell inCell, StProgress *inProgress)
 		inProgress->Step();
 		return;
 	}
-	
+
 	do
 	{
 		(*i).second.mStatus = kOnStack;
-	
+
 		do
 		{
 			i = fContainer->fCellData.find(dependsOn);
-			
+
 			if (dependsOn == inCell)
 				fContainer->fCellData[inCell].mStatus = kCircle;
 			else if (i != fContainer->fCellData.end() &&

@@ -72,7 +72,7 @@
 class CView : public BView {
 public:
 	CView(BRect frame) : BView(frame, NULL, 0, B_WILL_DRAW) {};
-	void MouseMoved(BPoint point, ulong transit, const BMessage *msg)
+	void MouseMoved(BPoint point, uint32 transit, const BMessage *msg)
 	{
 		BView::MouseMoved(point, transit, msg);
 		be_app->SetCursor(B_HAND_CURSOR);

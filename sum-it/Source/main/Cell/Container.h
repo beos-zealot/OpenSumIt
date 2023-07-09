@@ -176,7 +176,7 @@ private:
 	
 /* en de fields */
 	BLocker fWriteLocker;
-	long fReferenceCount;
+	int32 fReferenceCount;
 	cellmap fCellData;
 	CCellView *fInView;
 	CNameTable *fNames;

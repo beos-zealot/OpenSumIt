@@ -57,7 +57,7 @@
 #include <MenuField.h>
 #include <ListView.h>
 
-const ulong
+const uint32
 	msg_OK				= 'OK  ',
 	msg_Cancel			= 'Cncl',
 	msg_Changed			= 'Chng';

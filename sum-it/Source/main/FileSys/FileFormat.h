@@ -83,6 +83,12 @@
 #include <SupportDefs.h>
 #include <GraphicsDefs.h>
 #include <Rect.h>
+#ifndef htonl
+#	define htonl(x) B_HOST_TO_BENDIAN_INT32(x)
+#	define ntohl(x) B_BENDIAN_TO_HOST_INT32(x)
+#	define htons(x) B_HOST_TO_BENDIAN_INT16(x)
+#	define ntohs(x) B_BENDIAN_TO_HOST_INT16(x)
+#endif
 
 enum scChunkType {
 	kscVersion = 'VR',		// version
@@ -116,17 +122,17 @@ struct scChunk {
 const short kVersion = 0x0300;
 
 struct scVersion {
-	uchar major;
-	uchar minor;
+	uint8 major;
+	uint8 minor;
 };
 
 struct scHeader {
-	ushort defaultFormat;
-	short filler0;
-	long flags;
-	short functionCount;
-	short filler1;
-	ulong cellCount;
+	uint16 defaultFormat;
+	int16 filler0;
+	uint32 flags;
+	int16 functionCount;
+	int16 filler1;
+	uint32 cellCount;
 };
 
 enum {
@@ -139,7 +145,7 @@ struct scView {
 	cell frozen;
 	cell curCell;
 	range selection;
-	long flags;
+	uint32 flags;
 	ushort headingFont;
 	ushort fill;
 };
@@ -153,12 +159,12 @@ enum {
 struct scPrintInfo {
 	BRect page;
 	BRect margins;
-	long flags;
+	uint32 flags;
 };
 
 struct scWidthElement {
-	short index;
-	short width;
+	int16 index;
+	int16 width;
 };
 
 struct scWidths {
@@ -166,8 +172,8 @@ struct scWidths {
 };
 
 struct scCSElement {
-	short index;
-	short style;
+	int16 index;
+	int16 style;
 };
 
 struct scColStyles {
@@ -181,8 +187,8 @@ struct scName {
 
 struct scFunc {
 	char name[10];
-	ushort funcNr;
-	short argCnt;
+	uint16 funcNr;
+	int16 argCnt;
 };
 
 struct scFont {
@@ -194,8 +200,8 @@ struct scFont {
 };
 
 struct scFormat {
-	short nr;
-	short info[4];
+	int16 nr;
+	int16 info[4];
 	char formatString[1];
 };
 
@@ -205,13 +211,13 @@ enum {
 };
 
 struct scStyle {
-	ushort font;
-	ushort format;
+	uint16 font;
+	uint16 format;
 	rgb_color lowColor;
 	rgb_color borders[4];
-	long flags;
-	uchar align;
-	char reserved;
+	uint32 flags;
+	uint8 align;
+	int8 reserved;
 };
 
 enum {
@@ -230,8 +236,8 @@ enum {
 
 struct scCell {
 	cell loc;
-	ushort style;
-	short num[4]; // wil anders niet alignen
+	uint16 style;
+	int16 num[4]; // wil anders niet alignen
 };
 
 const int kscCellSize = sizeof(scCell)-sizeof(double);
@@ -248,7 +254,7 @@ struct scChart {
 	cell anchor;
 	BRect frame;
 	range area;
-	long reserved[4];
+	int32 reserved[4];
 	char name[1];		// directly followed by a flattened BMessage
 };
 
@@ -271,22 +277,22 @@ CSwapStream& operator>>(CSwapStream& stream, scString& v);
 CSwapStream& operator>>(CSwapStream& stream, scFormula& v);
 CSwapStream& operator>>(CSwapStream& stream, scChart& v);
 
-inline void swap_order(long& l)
+inline void swap_order(int32& l)
 {
 	l = ntohl(l);
 } /* swap_order */
 
-inline void swap_order(unsigned long& l)
+inline void swap_order(uint32& l)
 {
 	l = ntohl(l);
 } /* swap_order */
 
-inline void swap_order(short& s)
+inline void swap_order(int16& s)
 {
 	s = ntohs(s);
 } /* swap_order */
 
-inline void swap_order(unsigned short& s)
+inline void swap_order(uint16& s)
 {
 	s = ntohs(s);
 } /* swap_order */

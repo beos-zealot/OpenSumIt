@@ -19,11 +19,13 @@ test $DEPEND_FILE || {
 	exit 1
 }
 
+printf "%s " "${DEPEND_FILE}:" > ${DEPEND_FILE}
+
 # Remove all includes beginning with a '/'
 # Replace the '.o' with the dependency file AND the .o in the correct folder
 # Turn all relative directories into absolutes
-printf "%s " "${DEPEND_FILE}" > ${DEPEND_FILE}
-rez -m -p ${REZ_ARGS} >> ${DEPEND_FILE} && exit 0
+# printf "%s " "${DEPEND_FILE}" > ${DEPEND_FILE}
+#rez -m -p ${REZ_ARGS} >> ${DEPEND_FILE} && exit 0
 
-rm ${DEPEND_FILE}
-exit 1
+#rm ${DEPEND_FILE}
+#exit 1

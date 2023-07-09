@@ -43,7 +43,7 @@
 class CTabSheet;
 class CGraphPlugIn;
 
-const ulong
+const ssize_t
 	msg_GraphOptionsDialogClosed = 'GOcl';
 
 class CGraphOptionsDialog : public CRDialog {

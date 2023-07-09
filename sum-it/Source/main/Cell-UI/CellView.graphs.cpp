@@ -252,7 +252,7 @@ void CCellView::WriteCharts(BPositionIO& stream)
 			memset(&ci, 0, sizeof(ci));
 			
 			BMessage s(*p->Settings());
-			long l = s.FlattenedSize();
+			ssize_t l = s.FlattenedSize();
 			char *f = (char *)MALLOC(l);
 			s.Flatten(f, l);
 			

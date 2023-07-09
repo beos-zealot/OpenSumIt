@@ -75,7 +75,7 @@ public:
 
 private:
 	virtual void MouseDown(BPoint where);
-	virtual void KeyDown(const char *bytes, long numOfBytes);
+	virtual void KeyDown(const char *bytes, int32 numOfBytes);
 	virtual void MessageReceived(BMessage *inMessage);
 
 	void DoEntryContextMenu(BPoint where);

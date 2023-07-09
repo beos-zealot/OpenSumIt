@@ -171,7 +171,7 @@ void CAnimateGraphDialog::Pulse()
 	{
 		BHandler * h = fOwner->GetCellHandler();
 		BMessage msg(msg_AnimateCell);
-		msg.AddInt32("cell", *(long *)&fCell);
+		msg.AddInt32("cell", *(int32 *)&fCell);
 		msg.AddDouble("value", fCurrent);
 		fOwner->PostMessage(&msg, h);
 

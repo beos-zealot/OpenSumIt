@@ -252,7 +252,7 @@ CCellView::SelectRow(BPoint where, int rowNr)
 	long anchorRow, curRow, lastRow;
 	float t, b;
 	BRegion oldSel, newSel, oldClip;
-	ulong modifiers = Window()->CurrentMessage()->FindInt32("modifiers");
+	uint32 modifiers = Window()->CurrentMessage()->FindInt32("modifiers");
 
 	curPoint = where;
 	curRow = rowNr;
@@ -288,7 +288,7 @@ CCellView::SelectRow(BPoint where, int rowNr)
 		ChangeSelection(&oldSel, &newSel);
 	}
 
-	ulong buttons;
+	uint32 buttons;
 	GetMouse(&curPoint, &buttons);
 	while (buttons)
 	{
@@ -333,7 +333,7 @@ CCellView::SelectRow(BPoint where, int rowNr)
 			{
 				b = curRow; t = lastRow;
 			}
-			for (long x = static_cast<long>(t) ;
+			for (int32 x = static_cast<long>(t) ;
 			     x <= static_cast<long>(b) ;
 				 x++ )
 			{
@@ -390,7 +390,7 @@ CCellView::SelectCol(BPoint where, int colNr)
 	long anchorCol, curCol, lastCol, y;
 	float l, r;
 	BRegion oldSel, newSel, oldClip;
-	ulong modifiers = Window()->CurrentMessage()->FindInt32("modifiers");
+	uint32 modifiers = Window()->CurrentMessage()->FindInt32("modifiers");
 
 	curPoint = where;
 
@@ -427,7 +427,7 @@ CCellView::SelectCol(BPoint where, int colNr)
 		ChangeSelection(&oldSel, &newSel);
 	}
 
-	ulong buttons;
+	uint32 buttons;
 	GetMouse(&curPoint, &buttons);
 	while (buttons)
 	{
@@ -579,7 +579,7 @@ void CCellView::SelectCell(BPoint where)
 
 	oldCurCell = curCell;
 
-	ulong buttons;
+	uint32 buttons;
 	GetMouse(&cPoint, &buttons);
 	while (buttons)
 	{

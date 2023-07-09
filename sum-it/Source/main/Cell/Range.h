@@ -47,7 +47,7 @@
 
 struct _range
 {
-	short top, left, bottom, right;
+	int16 top, left, bottom, right;
 };
 
 class range : public _range {

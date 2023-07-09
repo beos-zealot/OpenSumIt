@@ -43,7 +43,7 @@
 
 #include "Dialog.h"
 
-const ulong msg_DisplayGraph = 'DspG';
+const uint32 msg_DisplayGraph = 'DspG';
 
 class CChooseGraphDialog : public CDialog {
 public:

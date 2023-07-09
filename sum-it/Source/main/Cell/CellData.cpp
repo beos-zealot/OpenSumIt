@@ -68,7 +68,7 @@ CellData::CellData( )
 ,	mConstant(0)
 ,	mType(eNoData)
 {	
-	memset( &mDouble, sizeof(mDouble), 0 ) ;
+	memset( &mDouble, 0, sizeof(mDouble) ) ;
 };
 
 CellData::CellData(const CellData& d)

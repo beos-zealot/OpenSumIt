@@ -81,7 +81,7 @@
 #include <Button.h>
 #include <TextControl.h>
 
-const ulong
+const uint32
 	msg_ListSelect = 'LstS',
 	msg_ListInvoke = 'LstI';
 
@@ -294,7 +294,7 @@ void CNamesDialog::WindowActivated(bool active)
 		if (m.SendMessage(&msg, &reply) == B_NO_ERROR)
 		{
 			range r;
-			long l;
+			ssize_t l;
 			const void *p;
 			if (reply.FindData("selection", 'rang', &p, &l) == B_NO_ERROR)
 			{
@@ -329,7 +329,7 @@ void CNamesDialog::MessageReceived(BMessage *inMessage)
 		{
 			char s[256];
 			range r;
-			long l;
+			ssize_t l;
 			const void *p;
 			
 			if (inMessage->FindData("range", 'rang', &p, &l) == B_NO_ERROR)

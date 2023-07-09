@@ -45,7 +45,7 @@
 #include <View.h>
 #include <List.h>
 
-const ulong msg_Flip = 'flip';
+const uint32 msg_Flip = 'flip';
 
 class CTabSheet : public BView {
 public:

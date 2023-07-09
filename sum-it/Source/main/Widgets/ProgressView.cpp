@@ -198,7 +198,7 @@ void CProgressView::WindowActivated(bool active)
 
 void CProgressView::MessageReceived(BMessage *inMessage)
 {
-	long l;
+	int32 l;
 	switch (inMessage->what)
 	{
 		case msg_ProgressInfo:

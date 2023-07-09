@@ -38,7 +38,7 @@
 
 */
 
-const ulong
+const uint32
 	msg_NewWindow 			= 'NewW',
 	msg_OpenWindow			= 'OpnW',
 	msg_CloseWindow			= 'ClsW',

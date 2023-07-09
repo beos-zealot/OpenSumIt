@@ -66,7 +66,7 @@
 
 CFormatTable gFormatTable;
 
-static long gNextFormatNr = 1024;
+static int32 gNextFormatNr = 1024;
 
 char gTrueString[32];
 char gFalseString[32];

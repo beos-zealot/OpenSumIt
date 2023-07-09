@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	SortDialog.c
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -102,7 +102,7 @@
 #include <MenuItem.h>
 
 
-const ulong
+const uint32
 	msg_DoSort = 'DSrt',
 	msg_OrderChanged = 'Ordr',
 	msg_KeyChanged = 'Kchg';
@@ -118,7 +118,7 @@ void CSortDialog::PostInit()
 	fView = fOwner->GetCellView();
 	fCells = fView->GetContainer();
 	fRows = true;
-	
+
 	BAutolock lock(this);
 	if (!lock.IsLocked())
 		THROW((errLockWindow));
@@ -127,7 +127,7 @@ void CSortDialog::PostInit()
 
 	BMenuField *mf = dynamic_cast<BMenuField*>(FindView("Key 1"));
 	fKey1 = mf->Menu();
-	
+
 	mf = dynamic_cast<BMenuField*>(FindView("Order 1"));
 	fAsc1 = mf->Menu();
 	fAsc1->AddItem(new BMenuItem(GetIndString(5, dlg_Asc), new BMessage(msg_OrderChanged)));
@@ -136,7 +136,7 @@ void CSortDialog::PostInit()
 
 	mf = dynamic_cast<BMenuField*>(FindView("Key 2"));
 	fKey2 = mf->Menu();
-	
+
 	mf = dynamic_cast<BMenuField*>(FindView("Order 2"));
 	fAsc2 = mf->Menu();
 	fAsc2->AddItem(new BMenuItem(GetIndString(5, dlg_Asc), new BMessage(msg_OrderChanged)));
@@ -145,7 +145,7 @@ void CSortDialog::PostInit()
 
 	mf = dynamic_cast<BMenuField*>(FindView("Key 3"));
 	fKey3 = mf->Menu();
-	
+
 	mf = dynamic_cast<BMenuField*>(FindView("Order 3"));
 	fAsc3 = mf->Menu();
 	fAsc3->AddItem(new BMenuItem(GetIndString(5, dlg_Asc), new BMessage(msg_OrderChanged)));
@@ -164,16 +164,16 @@ void CSortDialog::AddToMenu(BMenu *menu, int from, int to, bool number)
 {
 	int i;
 	char s[64];
-	
+
 	for (i = menu->CountItems(); i >= 0; --i)
 	{
 		BMenuItem *item = menu->RemoveItem(i);
 		if (item)
 			delete item;
 	}
-	
+
 	menu->AddItem(new BMenuItem(GetIndString(5, dlg_NoKey), new BMessage(msg_KeyChanged)));
-	
+
 	for (i = from; i <= to; i++)
 	{
 		if (number)
@@ -182,7 +182,7 @@ void CSortDialog::AddToMenu(BMenu *menu, int from, int to, bool number)
 			NumToAString(i, s);
 		menu->AddItem(new BMenuItem(s, new BMessage(msg_KeyChanged)));
 	}
-	
+
 	menu->FindItem(GetIndString(5, dlg_NoKey))->SetMarked(true);
 } /* CSortDialog::AddToMenu */
 
@@ -194,7 +194,7 @@ void CSortDialog::UpdateFields()
 	r.GetName(name);
 	sprintf(s, GetIndString(5, dlg_SortRange), name);
 	SetText("range", s);
-	
+
 	if (IsOn("bycol"))
 	{
 		fRows = false;
@@ -220,10 +220,10 @@ bool CSortDialog::OKClicked()
 	BMessage msg(msg_Sort);
 	int key1, key2, key3;
 	bool asc1, asc2, asc3;
-	
+
 	range r;
 	fView->GetSelection(r);
-	
+
 	key1 = fKey1->IndexOf(fKey1->FindMarked());
 	if (key1 > 0)
 		key1 += (fRows ? r.left : r.top) - 1;
@@ -233,11 +233,11 @@ bool CSortDialog::OKClicked()
 	key3 = fKey3->IndexOf(fKey3->FindMarked());
 	if (key3 > 0)
 		key3 += (fRows ? r.left : r.top) - 1;
-	
+
 	asc1 = fAsc1->IndexOf(fAsc1->FindMarked()) == 0;
 	asc2 = fAsc2->IndexOf(fAsc2->FindMarked()) == 0;
 	asc3 = fAsc3->IndexOf(fAsc3->FindMarked()) == 0;
-	
+
 	msg.AddInt32("key1", key1);
 	msg.AddInt32("key2", key2);
 	msg.AddInt32("key3", key3);
@@ -245,7 +245,7 @@ bool CSortDialog::OKClicked()
 	msg.AddBool("asc2", asc2);
 	msg.AddBool("asc3", asc3);
 	msg.AddBool("rows", fRows);
-	
+
 	fOwner->PostMessage(&msg, fView);
 
 	return true;
@@ -258,9 +258,9 @@ CSortDialog* CSortDialog::Construct(CCellWindow *owner)
 	char name[256];
 	window_type type;
 	int flags;
-	
+
 	InitValues(10, buf, frame, name, type, flags, owner);
-	
+
 	CSortDialog* result = new CSortDialog(frame, name, owner, type, flags);
 	if (result)
 	{
@@ -276,7 +276,7 @@ CSortDialog* CSortDialog::Construct(CCellWindow *owner)
 			result = NULL;
 		}
 	}
-	
+
 	return result;
 } /* CSortDialog::Construct */
 

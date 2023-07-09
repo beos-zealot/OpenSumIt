@@ -1,7 +1,7 @@
 /*
 	Copyright 1996, 1997, 1998, 2000
 	        Hekkelman Programmatuur B.V.  All rights reserved.
-	
+
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 	1. Redistributions of source code must retain the above copyright notice,
@@ -11,13 +11,13 @@
 	   and/or other materials provided with the distribution.
 	3. All advertising materials mentioning features or use of this software
 	   must display the following acknowledgement:
-	   
+
 	    This product includes software developed by Hekkelman Programmatuur B.V.
-	
+
 	4. The name of Hekkelman Programmatuur B.V. may not be used to endorse or
 	   promote products derived from this software without specific prior
 	   written permission.
-	
+
 	THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
 	INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
 	FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
@@ -27,13 +27,13 @@
 	OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
 	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 	OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+	ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 /*
 	FindDialog.cpp
-	
+
 	Copyright 1997, Hekkelman Programmatuur
-	
+
 	Part of Sum-It for the BeBox version 1.1.
 
 */
@@ -113,7 +113,7 @@ void CFindDialog::PostInit()
 
 	SetOn("ign_case", gPrefs->GetPrefInt("Search Ignore Case", 1));
 	SetOn("wrap", gPrefs->GetPrefInt("Search Wrap", 1));
-	
+
 	UpdateFields();
 } /* CFindDialog::CFindDialog */
 
@@ -123,27 +123,27 @@ bool CFindDialog::QuitRequested()
 	return CCellWindow::WindowCount() == 0;
 } /* CFindDialog::QuitRequested */
 
-void CFindDialog::DoFind(ulong cmd)
+void CFindDialog::DoFind(uint32 cmd)
 {
 	BMessage msg(cmd);
-	
+
 	msg.AddString("what", GetText("find"));
 	msg.AddString("with", GetText("replace"));
-	
+
 	bool b = IsOn("form");
 	msg.AddBool("where", b);
 	gPrefs->SetPrefInt("Search In Formulas", b ? 1 : 0);
-	
+
 	b = IsOn("wrap");
 	msg.AddBool("wrap", b);
 	gPrefs->SetPrefInt("Search Wrap", b ? 1: 0);
-	
+
 	b = IsOn("ign_case");
 	msg.AddBool("case", b);
 	gPrefs->SetPrefInt("Search Ignore Case", b ? 1 : 0);
-	
+
 	CCellWindow *w = CCellWindow::TopWindow();
-	
+
 	if (w)
 	{
 		w->UpdateIfNeeded();
@@ -154,7 +154,7 @@ void CFindDialog::DoFind(ulong cmd)
 void CFindDialog::WindowActivated(bool active)
 {
 	CDialog::WindowActivated(active);
-	
+
 	UpdateFields();
 	FindView("find")->MakeFocus();
 } /* CFindDialog::WindowActivated */
@@ -162,7 +162,7 @@ void CFindDialog::WindowActivated(bool active)
 void CFindDialog::UpdateFields()
 {
 	CCellWindow *w = CCellWindow::TopWindow();
-	
+
 	if (IsOn("form") && w && strlen(GetText("find")))
 	{
 		BMessage query(msg_QueryCanReplace);
@@ -201,7 +201,7 @@ void CFindDialog::MessageReceived(BMessage *msg)
 			}
 			break;
 		}
-			
+
 		default:
 			CDialog::MessageReceived(msg);
 			break;
@@ -215,9 +215,9 @@ CFindDialog* CFindDialog::Construct()
 	char name[256];
 	window_type type;
 	int flags;
-	
+
 	InitValues(8, buf, frame, name, type, flags, NULL);
-	
+
 	CFindDialog* result = new CFindDialog(frame, name, NULL, type, flags);
 	if (result)
 	{
@@ -233,6 +233,6 @@ CFindDialog* CFindDialog::Construct()
 			result = NULL;
 		}
 	}
-	
+
 	return result;
 } /* CFindDialog::Construct */

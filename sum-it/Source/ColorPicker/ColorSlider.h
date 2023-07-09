@@ -40,7 +40,7 @@
 
 #include <InterfaceKit.h>
 
-const ulong msg_SliderChanged = 'Slid';
+const uint32 msg_SliderChanged = 'Slid';
 
 class CColorSlider : public BView {
 public:

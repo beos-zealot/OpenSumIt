@@ -60,7 +60,7 @@ void CCellView::ResizeRow(BPoint where, int rowNr)
 	BPoint newP, lastP;
 	BRect bounds(Bounds()), r, b;
 	BRegion rgn;
-	ulong buttons, cnt;
+	uint32 buttons, cnt;
 	bool multi;
 	int mRow = rowNr;
 	CRunArray backup(fCellHeights);
@@ -257,7 +257,7 @@ void CCellView::ResizeCol(BPoint where, int colNr)
 	float x, minX, maxRow;
 	BPoint newP, lastP;
 	BRect bounds(Bounds()), r, b;
-	ulong buttons, cnt;
+	uint32 buttons, cnt;
 	bool multi;
 	int mCol = colNr;
 	CRunArray backup(fCellWidths);

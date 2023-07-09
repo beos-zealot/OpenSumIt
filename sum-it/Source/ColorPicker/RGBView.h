@@ -42,7 +42,7 @@
 
 class CColorSlider;
 
-const ulong msg_RawChange = 'RawC';
+const uint32 msg_RawChange = 'RawC';
 
 class CRGBView : public BBox {
 public:

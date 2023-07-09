@@ -71,7 +71,7 @@ const rgb_color
 		{ 0x60, 0x60, 0x60, 0, }, // 16	18
 	};
 
-const ulong
+const uint32
 	msg_EndTracking = 'EndT';
 
 struct roSColor

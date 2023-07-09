@@ -357,7 +357,7 @@ void CCellView::AttachProgressView(CProgressView* inProgressView)
 bool CCellView::WaitMouseMoved(BPoint where, bool moveIsOK)
 {
 	BPoint cur;
-	ulong btns;
+	uint32 btns;
 	bigtime_t breakAt;
 	
 	get_click_speed(&breakAt);
@@ -484,7 +484,7 @@ void CCellView::CancelCalculation()
 	if (fJob)
 	{
 		fJob->Cancel();
-		long l;
+		status_t l;
 		wait_for_thread(fJob->Thread(), &l);
 		fJob = NULL;
 	}

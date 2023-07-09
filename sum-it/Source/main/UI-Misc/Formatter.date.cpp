@@ -86,7 +86,8 @@ float CFormatter::FormatDate(const time_t t, char *s,
 
 	if (day || month || year)
 	{
-		char *d, *m, *y, ds[2], *p[3];
+		const char *d, *m, *y, *p[3];
+		char ds[2];
 		ds[1] = 0;
 		
 		if (day)
